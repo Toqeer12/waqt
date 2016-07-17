@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import DBHandle.DatabaseHandler;
+import connection.ConnectivityReceiver;
 import info.androidhive.materialdesign.R;
 
 
@@ -58,6 +60,7 @@ public class Dashboard extends Fragment {
     public static final String KEY_MACADDRESS = "macaddress";
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
+    DatabaseHandler db ;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -74,6 +77,7 @@ public class Dashboard extends Fragment {
 
         //reference to the bluetooth adapter
         beaconManager = new BeaconManager(getActivity());
+        db=new DatabaseHandler(getActivity());
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         mediaPlayer = MediaPlayer.create(getActivity(), R.raw.song);
@@ -269,8 +273,18 @@ public void Check_In() throws IOException {
 
                 String major_conv=String.valueOf(major);
                 String minor_conv=String.valueOf(minor);
-                Post_Check_in_out(major_conv,minor_conv,uuid);
-               Log.d("Response","Found");
+                if(ConnectivityReceiver.isConnected())
+                {
+                    Post_Check_in_out(major_conv,minor_conv,uuid);
+                    Log.d("Response","Found");
+                }
+                else
+                {
+                    mBluetoothAdapter.stopLeScan(leScanCallback);
+                    Log.d("Response","Internet Not Found");
+                }
+
+
             }
             else if(patternFound==false)
             {
@@ -303,7 +317,7 @@ public void Check_In() throws IOException {
     }
 
 
-    private void Post_Check_in_out(final String major, String minor, String uuid){
+    private void Post_Check_in_out (final String major, String minor, String uuid){
         mBluetoothAdapter.stopLeScan(leScanCallback);
 
         final String ibeaconId = major+""+minor+""+uuid;
@@ -321,7 +335,7 @@ public void Check_In() throws IOException {
         //   }
         Log.d("Response", ibeaconId);
 
-        Log.d("Response", LoginActivity.macAddress);
+        Log.d("Response", MainActivity.emii);
         StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test2.php",
                 new Response.Listener<String>()
                 {
@@ -341,14 +355,15 @@ public void Check_In() throws IOException {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Response",error.toString());
-                        Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
+                       // mediaPlayer.start();
+                       // Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
                 params.put(KEY_IBAECONID,ibeaconId);
-                params.put(KEY_MACADDRESS,LoginActivity.macAddress);
+                params.put(KEY_MACADDRESS,MainActivity.emii);
 
                 return params;
             }
@@ -357,5 +372,41 @@ public void Check_In() throws IOException {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(postRequest);
+    }
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+    private void showSnack(boolean isConnected) {
+        String message;
+
+        if (isConnected) {
+            Intent intent = new Intent(getActivity(),MainActivity.class);
+            startActivity(intent);
+        } else {
+            message = "Sorry! Not connected to internet";
+            Snack_Bar(message);
+            // finish();
+
+        }
+
+
+
+    }
+
+    public void Snack_Bar(String message)
+
+    {
+        int color;
+        color = Color.WHITE;
+        Snackbar snackbar = Snackbar
+                .make(layout, message, Snackbar.LENGTH_LONG);
+
+        View sbView = snackbar.getView();
+        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(color);
+        snackbar.show();
     }
 }

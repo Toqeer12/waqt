@@ -25,7 +25,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import DBHandle.DatabaseHandler;
 import info.androidhive.materialdesign.R;
+import info.androidhive.materialdesign.model.Contact;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public static final String pass = "emailKey";
     public static final String emi = "nameKey";
     SharedPreferences sharedpreferences;
-    String emii,password;
+    public static String emii,password;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
    public static String profile,uuid,major,minor;
@@ -59,7 +63,28 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         emii = sharedpreferences.getString(emi, null);
         img=(ImageView)findViewById(R.id.image);
         txt=(TextView)findViewById(R.id.text);
+        DatabaseHandler db = new DatabaseHandler(this);
 
+        /**
+         * CRUD Operations
+         * */
+        // Inserting Contacts
+        Log.d("Insert: ", "Inserting ..");
+        db.addContact(new Contact("Ravi", "9100000000"));
+        db.addContact(new Contact("Srinivas", "9199999999"));
+        db.addContact(new Contact("Tommy", "9522222222"));
+        db.addContact(new Contact("Karthik", "9533333333"));
+
+        // Reading all contacts
+        Log.d("Reading: ", "Reading all contacts..");
+        List<Contact> contacts = db.getAllContacts();
+
+        for (Contact cn : contacts) {
+            String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+
+        }
         if(password==null)
         {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -133,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_messages);
                 break;
             case 3:
-                fragment = new MessagesFragment();
+                fragment = new Attendence();
                 title = getString(R.string.title_attendence);
                 break;
             default:
