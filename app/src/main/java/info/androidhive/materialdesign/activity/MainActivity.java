@@ -18,18 +18,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 import DBHandle.DatabaseHandler;
 import info.androidhive.materialdesign.R;
-import info.androidhive.materialdesign.model.Contact;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
@@ -153,11 +149,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
             case 1:
                 fragment = new Profile();
-                title = getString(R.string.title_friends);
+                title = getString(R.string.title_profile);
                 break;
             case 2:
-                fragment = new MessagesFragment();
-                title = getString(R.string.title_messages);
+                fragment = new LeaveFragment();
+                title = getString(R.string.title_leave);
                 break;
             case 3:
                 fragment = new Attendence();
