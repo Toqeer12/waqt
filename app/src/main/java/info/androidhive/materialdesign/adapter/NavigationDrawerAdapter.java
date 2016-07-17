@@ -4,16 +4,19 @@ package info.androidhive.materialdesign.adapter;
  * Created by Ravi on 29/07/15.
  */
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
 
 import info.androidhive.materialdesign.R;
+import info.androidhive.materialdesign.activity.LoginActivity;
 import info.androidhive.materialdesign.model.NavDrawerItem;
 
 public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.MyViewHolder> {
@@ -43,6 +46,9 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
+        holder.image.setImageResource(current.getImage());
+
+        Log.d("Image Resourse",""+current.getImage());
     }
 
     @Override
@@ -52,10 +58,12 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        ImageView image;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
+            image =(ImageView)itemView.findViewById(R.id.dashimage);
         }
     }
 }

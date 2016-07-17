@@ -18,7 +18,14 @@
         <item>@string/nav_item_attendence</item>
         <item>@string/nav_item_leavelist</item>
     </string-array>
+    <array name="nav_drawer_image">
+        <item>@drawable/arrowtecc</item>
+        <item>@drawable/arrowtecc</item>
+        <item>@drawable/arrowtecc</item>
+        <item>@drawable/arrowtecc</item>
+        <item>@drawable/arrowtecc</item>
 
+    </array>
     <string name="title_messages">Leave</string>
     <string name="title_friends">Profile</string>
     <string name="title_home">Dashboard</string>
