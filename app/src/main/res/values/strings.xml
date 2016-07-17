@@ -7,14 +7,16 @@
 
     <string name="nav_item_home">Dashboard</string>
     <string name="nav_item_friends">Profile</string>
-    <string name="nav_item_notifications">Leave</string>
-    <string name="nav_item_attendence">Attendence</string>
+    <string name="nav_item_notifications">Apply Leave</string>
+    <string name="nav_item_attendence">My Attendence</string>
+    <string name="nav_item_leavelist">My Leave List</string>
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
         <item>@string/nav_item_notifications</item>
         <item>@string/nav_item_attendence</item>
+        <item>@string/nav_item_leavelist</item>
     </string-array>
 
     <string name="title_messages">Leave</string>

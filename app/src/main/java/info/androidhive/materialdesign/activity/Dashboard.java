@@ -36,6 +36,9 @@ import com.estimote.sdk.Region;
 import com.estimote.sdk.repackaged.retrofit_v1_9_0.retrofit.http.POST;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +65,10 @@ public class Dashboard extends Fragment {
     public static final String KEY_MACADDRESS = "macaddress";
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
+    String major_conv;
+    String minor_conv;
+    String uuid;
+    String currentDateTimeString;
     DatabaseHandler db ;
     public Dashboard() {
         // Required empty public constructor
@@ -260,7 +267,7 @@ public void Check_In() throws IOException {
                 String hexString = bytesToHex(uuidBytes);
 
                 //UUID detection
-                String uuid =  hexString.substring(0,8) + "-" +
+                  uuid =  hexString.substring(0,8) + "-" +
                         hexString.substring(8,12) + "-" +
                         hexString.substring(12,16) + "-" +
                         hexString.substring(16,20) + "-" +
@@ -273,22 +280,45 @@ public void Check_In() throws IOException {
                 final int minor = (scanRecord[startByte + 22] & 0xff) * 0x100 + (scanRecord[startByte + 23] & 0xff);
                 byte txpw = scanRecord[29];
 
-                String major_conv=String.valueOf(major);
-                String minor_conv=String.valueOf(minor);
+                  major_conv=String.valueOf(major);
+                  minor_conv=String.valueOf(minor);
                 if(ConnectivityReceiver.isConnected())
                 {
                     Post_Check_in_out(major_conv,minor_conv,uuid);
                     Log.d("Response","Found");
+
+   /*                 Calendar c = Calendar.getInstance();
+                    int seconds = c.get(Calendar.SECOND);
+                    int min = c.get(Calendar.MINUTE);
+                    int hour = c.get(Calendar.HOUR);
+                    int dd = c.get(Calendar.DATE);
+                    int mm = c.get(Calendar.MONTH);
+                    int yy = c.get(Calendar.YEAR);*/
+
+                 /*   Log.d("ResponseTime: ", hour+":"+min+":"+seconds);
+                    Log.d("ResponseDate: ", dd+"/"+mm+"/"+yy);*/
+
                 }
                 else
                 {
                     mBluetoothAdapter.stopLeScan(leScanCallback);
                     Log.d("Response","Internet Not Found");
                     Log.d("Insert: ", "Inserting ..");
-                    db.addContact(new Contact("Ravi", "9100000000"));
-                    db.addContact(new Contact("Srinivas", "9199999999"));
-                    db.addContact(new Contact("Tommy", "9522222222"));
-                    db.addContact(new Contact("Karthik", "9533333333"));
+       /*              Calendar c = Calendar.getInstance();
+                    int seconds = c.get(Calendar.SECOND);
+                    int min = c.get(Calendar.MINUTE);
+                    int hour = c.get(Calendar.HOUR);
+                    int dd = c.get(Calendar.DATE);
+                    int mm = c.get(Calendar.MONTH);
+                    int yy = c.get(Calendar.YEAR);
+                    Log.d("ResponseTime: ", hour+":"+min+":"+seconds);
+                    Log.d("ResponseDate: ", dd+"/"+mm+"/"+yy);*/
+                    Snack_Bar("Checked Successfully");
+                    mediaPlayer.start();
+                      currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    Log.d("Response Data2",currentDateTimeString);
+                    db.addContact(new Contact(currentDateTimeString, MainActivity.emii));
+
                     Intent intent = new Intent(getActivity(), BackgroundService.class);
                     getActivity().startService(intent);
                 }
@@ -297,6 +327,7 @@ public void Check_In() throws IOException {
             }
             else if(patternFound==false)
             {
+                Post_Check_In_Out_Offical(currentDateTimeString, MainActivity.emii);
                 POST_Check_ERROR();
             }
 
@@ -306,7 +337,8 @@ public void Check_In() throws IOException {
     private void POST_Check_ERROR() {
         mBluetoothAdapter.stopLeScan(leScanCallback);
         Log.d("Response","Not Found");
-        Toast.makeText(getActivity(),"IBEACON Not Fount",Toast.LENGTH_LONG).show();
+        Snack_Bar("Failed Please Try Again");
+       // Toast.makeText(getActivity(),"IBEACON Not Fount",Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -352,9 +384,10 @@ public void Check_In() throws IOException {
                     public void onResponse(String response) {
                         // response
                         Log.d("Response", response);
-                        Toast.makeText(getActivity(), response,Toast.LENGTH_LONG).show();
+                       //Toast.makeText(getActivity(), response,Toast.LENGTH_LONG).show();
 //                        editor.putString("jsonArray",response);
   //                      editor.commit();
+                        Snack_Bar("Checked Successfully");
                         mediaPlayer.start();
 
 
@@ -404,7 +437,63 @@ public void Check_In() throws IOException {
 
 
     }
+    private void Post_Check_In_Out_Offical (final String currentdate, String minor ){
+        mBluetoothAdapter.stopLeScan(leScanCallback);
 
+       // final String ibeaconId = major+""+minor+""+uuid;
+        //// JsonArrayRequest stringRequest = new JsonArrayRequest (Request.Method.POST, "http://192.168.1.140:8080/test.php",
+        //  new Response.Listener<JSONArray>() {
+        //     @Override
+        //    public void onResponse(JSONArray response) {
+        //       Log.d("Response",response.toString());
+        //       editor.putString("jsonArray",response.toString());
+        //       editor.commit();
+
+        //       Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //      startActivity(intent);
+        //      finish();
+        //   }
+       // Log.d("Response", ibeaconId);
+
+        Log.d("Response", MainActivity.emii);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test2.php",
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+                        //Toast.makeText(getActivity(), response,Toast.LENGTH_LONG).show();
+//                        editor.putString("jsonArray",response);
+                        //                      editor.commit();
+                        Snack_Bar("Checked Successfully");
+                        mediaPlayer.start();
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Response",error.toString());
+                        // mediaPlayer.start();
+                        // Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put(KEY_IBAECONID,currentdate);
+                params.put(KEY_MACADDRESS,MainActivity.emii);
+
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(postRequest);
+    }
     public void Snack_Bar(String message)
 
     {

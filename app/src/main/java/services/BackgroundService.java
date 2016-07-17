@@ -102,7 +102,7 @@ public class BackgroundService extends Service {
         isRunning = false;
         Log.i(TAG, "Internet found Server running");
         Log.i(TAG, "Service onDestroy");
-        List<Contact> contacts = db.getAllContacts();
+        final List<Contact> contacts = db.getAllContacts();
 
         for (final Contact cn : contacts) {
             StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test2.php",
@@ -112,9 +112,8 @@ public class BackgroundService extends Service {
                             // response
                             Log.d("Response", response);
                             Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-//                        editor.putString("jsonArray",response);
-                            //                      editor.commit();
-
+                            db.deleteContact(db.getContact(cn.getID()));
+                            Log.d("Response", "Record Delete "+ cn.getID());
 
                         }
                     },
@@ -124,6 +123,7 @@ public class BackgroundService extends Service {
                             Log.d("Response", error.toString());
                             // mediaPlayer.start();
                             // Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
+
                         }
                     }) {
                 @Override
