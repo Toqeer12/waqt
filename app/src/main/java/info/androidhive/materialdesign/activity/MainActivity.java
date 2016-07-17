@@ -69,14 +69,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
          * CRUD Operations
          * */
         // Inserting Contacts
+/*
         Log.d("Insert: ", "Inserting ..");
         db.addContact(new Contact("Ravi", "9100000000"));
         db.addContact(new Contact("Srinivas", "9199999999"));
         db.addContact(new Contact("Tommy", "9522222222"));
         db.addContact(new Contact("Karthik", "9533333333"));
+*/
 
         // Reading all contacts
-        Log.d("Reading: ", "Reading all contacts..");
+/*        Log.d("Reading: ", "Reading all contacts..");
         List<Contact> contacts = db.getAllContacts();
 
         for (Contact cn : contacts) {
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             // Writing Contacts to log
             Log.d("Name: ", log);
 
-        }
+        }*/
         if(password==null)
         {
             Intent intent = new Intent(this, LoginActivity.class);

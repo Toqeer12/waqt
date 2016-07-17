@@ -44,6 +44,8 @@ import java.util.UUID;
 import DBHandle.DatabaseHandler;
 import connection.ConnectivityReceiver;
 import info.androidhive.materialdesign.R;
+import info.androidhive.materialdesign.model.Contact;
+import services.BackgroundService;
 
 
 public class Dashboard extends Fragment {
@@ -282,6 +284,13 @@ public void Check_In() throws IOException {
                 {
                     mBluetoothAdapter.stopLeScan(leScanCallback);
                     Log.d("Response","Internet Not Found");
+                    Log.d("Insert: ", "Inserting ..");
+                    db.addContact(new Contact("Ravi", "9100000000"));
+                    db.addContact(new Contact("Srinivas", "9199999999"));
+                    db.addContact(new Contact("Tommy", "9522222222"));
+                    db.addContact(new Contact("Karthik", "9533333333"));
+                    Intent intent = new Intent(getActivity(), BackgroundService.class);
+                    getActivity().startService(intent);
                 }
 
 
