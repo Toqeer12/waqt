@@ -22,11 +22,11 @@
         <item>@string/nav_item_leavelist</item>
     </string-array>
     <integer-array name="nav_drawer_image">
-        <item>@drawable/arrowtecc</item>
-        <item>@drawable/arrowtecc</item>
-        <item>@drawable/arrowtecc</item>
-        <item>@drawable/arrowtecc</item>
-        <item>@drawable/arrowtecc</item>
+        <item>@drawable/ic_home </item>
+        <item>@drawable/ic_home </item>
+        <item>@drawable/ic_home </item>
+        <item>@drawable/ic_home </item>
+        <item>@drawable/ic_home </item>
 
     </integer-array>
     <string name="title_leave">Leave</string>
