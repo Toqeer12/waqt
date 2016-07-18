@@ -1,5 +1,6 @@
 package info.androidhive.materialdesign.activity;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,16 +14,18 @@ import java.util.ArrayList;
 
 import info.androidhive.materialdesign.R;
 import info.androidhive.materialdesign.adapter.DataAdapter;
+import info.androidhive.materialdesign.adapter.LeaveDataAdapter;
 import info.androidhive.materialdesign.model.Attendence_history;
+import info.androidhive.materialdesign.model.Leave_Model;
 
 /**
- * Created by Arrowtec on 7/13/2016.
+ * Created by Arrowtec on 7/18/2016.
  */
-public class Attendence extends Fragment {
+public class MyLeaveList extends Fragment {
     private RecyclerView recyclerView;
-    ArrayList<Attendence_history> attendence;
-    DataAdapter adapter;
-    public Attendence() {
+    ArrayList<Leave_Model> leaveobject;
+    LeaveDataAdapter adapter;
+    public MyLeaveList() {
         // Required empty public constructor
     }
 
@@ -35,16 +38,15 @@ public class Attendence extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        attendence=new ArrayList<Attendence_history>();
-        View rootView = inflater.inflate(R.layout.fragment_attendence, container, false);
-        recyclerView = (RecyclerView)rootView.findViewById(R.id.card_recycler_view);
+        leaveobject=new ArrayList<Leave_Model>() ;
+        View rootView = inflater.inflate(R.layout.fragment_leave_list, container, false);
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.card_recycler_view2);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        attendence.add(new Attendence_history("A","V","D"));
-        adapter=new DataAdapter(getActivity(),attendence);
+        leaveobject.add(new Leave_Model("A","V","D","D","D","D"));
+        adapter=new LeaveDataAdapter(getActivity(),leaveobject);
         recyclerView.setAdapter(adapter);
-
 
 
         // Inflate the layout for this fragment

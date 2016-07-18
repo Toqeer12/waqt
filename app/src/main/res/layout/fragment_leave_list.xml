@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="25dp"
-        android:text="Attendence History"
+        android:text="Leave History"
         android:textStyle="bold"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,11 +25,11 @@
         android:layout_below="@+id/label"
         android:weightSum="4">
         <TextView
-             android:layout_marginTop="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
-            android:text="Check In"
-            android:layout_weight="1.2"
+            android:text="From"
+            android:layout_weight="0.7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
@@ -38,8 +38,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
-            android:layout_weight="1.2"
-            android:text="Check Out"
+            android:layout_weight="0.7"
+            android:text="To"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
@@ -48,24 +48,34 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
-            android:layout_weight="1.2"
-            android:text="Total Hour"
+            android:layout_weight="0.7"
+            android:text="Hour/Day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
+        <TextView
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:layout_weight="0.9"
+            android:text="Applied On"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
         <TextView
 
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
             android:layout_weight="0.5"
-            android:text="Hello"
+            android:text="Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/card_recycler_view"
+        android:id="@+id/card_recycler_view2"
         android:scrollbars="vertical"
         android:layout_below="@+id/layout"
         android:layout_width="match_parent"

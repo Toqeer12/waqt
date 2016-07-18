@@ -12,6 +12,7 @@
     <string name="nav_item_leavelist">My Leave List</string>
     <string name="from_date">From Date</string>
     <string name="to_date">To Date</string>
+    <string name="comment">Comment</string>
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
@@ -32,4 +33,5 @@
     <string name="title_profile">Profile</string>
     <string name="title_home">Dashboard</string>
     <string name="title_attendence">Attendence</string>
+    <string name="title_leavelist">LeaveList</string>
 </resources>

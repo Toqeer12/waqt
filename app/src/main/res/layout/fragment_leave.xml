@@ -46,7 +46,16 @@
             android:layout_marginTop="10dp"
              />
 
-
+        <TextView
+            android:id="@+id/leavebalc"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="20dp"
+            android:text="Leave Balance"
+            android:textStyle="bold"/>
         <TextView
         android:id="@+id/frmdate"
         android:layout_alignParentTop="true"
@@ -75,7 +84,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textSize="20dp"
-            android:text="From Date *"
+            android:text="To Date *"
             android:maxLines="1"
             android:textStyle="bold"/>
 
@@ -95,7 +104,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textSize="20dp"
-            android:text="From Date *"
+            android:text="Comment"
             android:maxLines="1"
             android:textStyle="bold"/>
 
@@ -104,7 +113,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/to_date" />
+            android:hint="@string/comment" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/cancel"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/submit"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

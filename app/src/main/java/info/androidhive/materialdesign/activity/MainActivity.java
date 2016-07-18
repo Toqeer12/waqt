@@ -159,6 +159,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new Attendence();
                 title = getString(R.string.title_attendence);
                 break;
+            case 4:
+                fragment = new MyLeaveList();
+                title=getString(R.string.title_leavelist);
+                break;
             default:
                 break;
         }

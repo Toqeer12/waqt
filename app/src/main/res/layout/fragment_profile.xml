@@ -27,7 +27,7 @@
         android:textSize="22dp"
         android:layout_below="@+id/profile_image"
         android:paddingTop="10dp"
-        android:text="Hellp"
+        android:text="Hello"
          android:gravity="center_horizontal"
         android:id="@+id/name" />
 
@@ -56,7 +56,7 @@
 
                 <ImageView
                     android:layout_width="72px"
-
+                    android:paddingTop="10dp"
                     android:layout_height="72px"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username"
-                    android:hint="UserName"
+                    android:hint="Nick Name"
                     />
             </LinearLayout>
             <LinearLayout
@@ -76,7 +76,7 @@
 
                 <ImageView
                     android:layout_width="72px"
-
+                    android:paddingTop="10dp"
                     android:layout_height="72px"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username2"
-                    android:hint="UserName"
+                    android:hint="DOB"
                     />
             </LinearLayout>
             <LinearLayout
@@ -92,19 +92,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/layout4"
+
                 android:layout_below="@+id/layout3">
 
                 <ImageView
                     android:layout_width="72px"
 
                     android:layout_height="72px"
+                    android:paddingTop="10dp"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username3"
-                    android:hint="UserName"
+                    android:hint="Material Status"
                     />
             </LinearLayout>
             <LinearLayout
@@ -116,7 +118,7 @@
 
                 <ImageView
                     android:layout_width="72px"
-
+                    android:paddingTop="10dp"
                     android:layout_height="72px"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
@@ -124,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username4"
-                    android:hint="UserName"
+                    android:hint="Highest Qualification"
                     />
             </LinearLayout>
             <LinearLayout
@@ -136,7 +138,7 @@
 
                 <ImageView
                     android:layout_width="72px"
-
+                    android:paddingTop="10dp"
                     android:layout_height="72px"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
@@ -144,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username5"
-                    android:hint="UserName"
+                    android:hint="Other Detail"
                     />
             </LinearLayout>
 
@@ -157,7 +159,7 @@
 
                 <ImageView
                     android:layout_width="72px"
-
+                    android:paddingTop="10dp"
                     android:layout_height="72px"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
@@ -165,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username6"
-                    android:hint="UserName"
+                    android:hint="Driving Licence #"
                     />
             </LinearLayout>
             <LinearLayout
@@ -177,7 +179,7 @@
 
                 <ImageView
                     android:layout_width="72px"
-
+                    android:paddingTop="10dp"
                     android:layout_height="72px"
                     android:src="@drawable/ic_profile"
                     android:paddingLeft="10dp"/>
@@ -185,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username7"
-                    android:hint="UserName"
+                    android:hint="Licence Expire"
                     />
             </LinearLayout>
         </LinearLayout>
