@@ -212,9 +212,9 @@ public class LoginActivity extends AppCompatActivity {
                   //      finish();
                  //   }
 
-
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test.php",
+            String url ="http://schoolhrms.mydreamapps.com/api/testapi/get?password="+password+"&mac"+macaddress;
+            Log.d("URL",url);
+        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/get?password="+password+"&mac="+macaddress,
                             new Response.Listener<String>()
                             {
                                 @Override
@@ -222,6 +222,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // response
 
                                     try {
+                                        Log.d("Response", response.toString());
                                         JSONArray jsoArray = new JSONArray(response);
                                         for (int i = 0; i < jsoArray.length(); i++) {
                                             JSONObject person = (JSONObject) jsoArray
@@ -261,14 +262,14 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
-            @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                params.put(KEY_MACADDRESS,macaddress);
-                params.put(KEY_PASSWORD,password);
-
-                return params;
-            }
+//            @Override
+//            protected Map<String,String> getParams(){
+//                Map<String,String> params = new HashMap<String, String>();
+//              //  params.put(KEY_MACADDRESS,macaddress);
+//                params.put(KEY_PASSWORD,password);
+//
+//                return params;
+//            }
 
         };
 

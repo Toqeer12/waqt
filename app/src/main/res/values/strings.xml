@@ -22,11 +22,11 @@
         <item>@string/nav_item_leavelist</item>
     </string-array>
     <integer-array name="nav_drawer_image">
-        <item>@drawable/ic_home </item>
-        <item>@drawable/ic_home </item>
-        <item>@drawable/ic_home </item>
-        <item>@drawable/ic_home </item>
-        <item>@drawable/ic_home </item>
+        <item>@drawable/waqt_dashboard </item>
+        <item>@drawable/waqt_profile </item>
+        <item>@drawable/waqt_applyleav</item>
+        <item>@drawable/waqt_attendence</item>
+        <item>@drawable/waqt_myleavelist </item>
 
     </integer-array>
     <string name="title_leave">Leave</string>

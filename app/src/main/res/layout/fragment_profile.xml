@@ -13,8 +13,8 @@
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:src="@drawable/images"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
@@ -55,11 +55,11 @@
                 android:layout_below="@+id/layout1">
 
                 <ImageView
-                    android:layout_width="72px"
-                    android:paddingTop="10dp"
-                    android:layout_height="72px"
-                    android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                    android:src="@drawable/waqt_nickname"
+                    android:paddingTop="3dp"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,19 +72,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/layout3"
+                android:paddingTop="5dp"
                 android:layout_below="@+id/layout2">
 
                 <ImageView
-                    android:layout_width="72px"
-                    android:paddingTop="10dp"
-                    android:layout_height="72px"
-                    android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                    android:src="@drawable/waqt_employe"
+                    android:paddingTop="3dp"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username2"
                     android:hint="DOB"
+                    android:paddingTop="10dp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -92,16 +94,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/layout4"
-
+                android:paddingTop="5dp"
                 android:layout_below="@+id/layout3">
 
                 <ImageView
-                    android:layout_width="72px"
-
-                    android:layout_height="72px"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:layout_width="wrap_content"
+                    android:paddingTop="3dp"
+                    android:layout_height="wrap_content"
+                     android:src="@drawable/ic_profile"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,14 +115,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/layout5"
+                android:paddingTop="5dp"
                 android:layout_below="@+id/layout4">
 
                 <ImageView
-                    android:layout_width="72px"
-                    android:paddingTop="10dp"
-                    android:layout_height="72px"
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:paddingTop="3dp"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,16 +134,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="5dp"
                 android:orientation="horizontal"
                 android:id="@+id/layout6"
                 android:layout_below="@+id/layout5">
 
                 <ImageView
-                    android:layout_width="72px"
-                    android:paddingTop="10dp"
-                    android:layout_height="72px"
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:paddingTop="3dp"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -155,14 +158,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/layout7"
+                android:paddingTop="5dp"
                 android:layout_below="@+id/layout6">
 
                 <ImageView
-                    android:layout_width="72px"
-                    android:paddingTop="10dp"
-                    android:layout_height="72px"
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:paddingTop="3dp"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,15 +178,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:paddingTop="5dp"
                 android:id="@+id/layout8"
                 android:layout_below="@+id/layout7">
 
                 <ImageView
-                    android:layout_width="72px"
-                    android:paddingTop="10dp"
-                    android:layout_height="72px"
+                    android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_profile"
-                    android:paddingLeft="10dp"/>
+                    android:paddingTop="3dp"
+                    android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
