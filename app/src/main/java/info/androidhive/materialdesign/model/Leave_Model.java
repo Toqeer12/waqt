@@ -1,71 +1,67 @@
 package info.androidhive.materialdesign.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Created by Arrowtec on 7/18/2016.
  */
-public class Leave_Model {
-    public Leave_Model(String status, String hour, String endLeave, String startLeave, String applied, String op) {
-        this.status = status;
-        this.hour = hour;
-        this.endLeave = endLeave;
-        this.startLeave = startLeave;
-        this.applied = applied;
-        this.op = op;
+public class Leave_Model implements Serializable {
+    public String fromLeave;
+    public String toLeave;
+    public String Qunatity;
+    public String  reason;
+    public String applytime;
+
+    public String getApplytime() {
+        return applytime;
     }
 
-    String startLeave;
-
-    public String getOp() {
-        return op;
+    public void setApplytime(String applytime) {
+        this.applytime = applytime;
     }
 
-    public void setOp(String op) {
-        this.op = op;
+    public Leave_Model(String applyDate, String applytime, String leaveStatus, String titleEn) {
+        ApplyDate = applyDate;
+        LeaveStatus = leaveStatus;
+        TitleEn = titleEn;
+
+        applytime=applytime;
+
     }
 
-    public String getStatus() {
-        return status;
+    public String isPaid;
+    public String LeaveStatus;
+    public String ApplyDate;
+    public String TermStart;
+    public String TermEnd;
+
+    public String getApplyDate() {
+        return ApplyDate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setApplyDate(String applyDate) {
+        ApplyDate = applyDate;
     }
 
-    public String getStartLeave() {
-        return startLeave;
+    public String getLeaveStatus() {
+        return LeaveStatus;
     }
 
-    public void setStartLeave(String startLeave) {
-        this.startLeave = startLeave;
+    public void setLeaveStatus(String leaveStatus) {
+        LeaveStatus = leaveStatus;
     }
 
-    public String getEndLeave() {
-        return endLeave;
+    public String getTitleEn() {
+        return TitleEn;
     }
 
-    public void setEndLeave(String endLeave) {
-        this.endLeave = endLeave;
+    public void setTitleEn(String titleEn) {
+        TitleEn = titleEn;
     }
 
-    public String getHour() {
-        return hour;
-    }
-
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
-    public String getApplied() {
-        return applied;
-    }
-
-    public void setApplied(String applied) {
-        this.applied = applied;
-    }
-
-    String endLeave;
-    String hour;
-    String status;
-    String applied;
-    String op;
+    public String ProcessDate;
+    public String TitleEn;
+    public String ConcurrencyType;
+    public String UnitType;
 }

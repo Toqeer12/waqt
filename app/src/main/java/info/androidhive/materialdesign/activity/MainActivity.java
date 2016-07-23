@@ -35,9 +35,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public static final String emi = "nameKey";
     SharedPreferences sharedpreferences;
     public static String emii,password;
+
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-   public static String profile,uuid,major,minor;
+     public static String profile ,comp_logo,EmployeeId;
     public static String name;
     TextView txt;
     ImageView img;
@@ -97,13 +98,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                     for (int i = 0; i < jsoArray.length(); i++) {
                         JSONObject person = (JSONObject) jsoArray
                                 .get(i);
-                      name = person.getString("name");
+                        name = person.getString("NameEn");
+                        comp_logo = person.getString("Company_image");
+                        profile=person.getString("Emp_image");
+                        EmployeeId = person.getString("EmployeeId");
 
-
-                      profile = person.getString("image");
-                        uuid=person.getString("uuid");
-                        major=person.getString("major");
-                        minor=person.getString("minor");
 
                         Glide.with(getApplicationContext())
                                 .load(profile.replace("https", "http"))
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                                 .fitCenter()
                                 .into(img);
                         Log.d("Response", name);
-                        txt.setText(person.getString("name"));
+                        txt.setText(person.getString("NameEn"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

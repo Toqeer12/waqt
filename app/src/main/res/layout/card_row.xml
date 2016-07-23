@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:weightSum="4">
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/emp_id"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
@@ -23,28 +23,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1.2"
-            android:text="Hello"
+
+        <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_weight="1.0"
             android:layout_height="wrap_content"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/checkin_date"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/checkin_time"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+
+                android:text="Hello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1.2"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/checkout_date"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp"
+
+        android:text="Hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/checkout_time"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp"
+
+        android:text="Hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
         <TextView
-            android:id="@+id/tv_api_level"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1.2"
-            android:text="Hello"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/tv_api_minor"
+            android:id="@+id/total_hour"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"

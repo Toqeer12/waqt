@@ -40,6 +40,9 @@
         android:layout_below="@+id/layout1"
         android:id="@+id/scr_layout">
         <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -101,13 +104,13 @@
                     android:layout_width="wrap_content"
                     android:paddingTop="3dp"
                     android:layout_height="wrap_content"
-                     android:src="@drawable/ic_profile"
+                     android:src="@drawable/waqt_maritalstatus"
                     android:paddingLeft="5dp"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/username3"
-                    android:hint="Material Status"
+                    android:hint="Marital Status"
                     />
             </LinearLayout>
             <LinearLayout
@@ -121,7 +124,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                    android:src="@drawable/ic_profile"
+                    android:src="@drawable/waqt_highest_qualification"
                     android:paddingTop="3dp"
                     android:paddingLeft="5dp"/>
                 <EditText
@@ -142,7 +145,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                    android:src="@drawable/ic_profile"
+                    android:src="@drawable/waqt_otherdetails"
                     android:paddingTop="3dp"
                     android:paddingLeft="5dp"/>
                 <EditText
@@ -164,7 +167,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                    android:src="@drawable/ic_profile"
+                    android:src="@drawable/waqt_dlicense"
                     android:paddingTop="3dp"
                     android:paddingLeft="5dp"/>
                 <EditText
@@ -185,7 +188,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                    android:src="@drawable/ic_profile"
+                    android:src="@drawable/waqt_dlicenseexpiry"
                     android:paddingTop="3dp"
                     android:paddingLeft="5dp"/>
                 <EditText

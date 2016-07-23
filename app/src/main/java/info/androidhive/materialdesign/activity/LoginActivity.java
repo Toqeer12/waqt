@@ -214,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
 
             String url ="http://schoolhrms.mydreamapps.com/api/testapi/get?password="+password+"&mac"+macaddress;
             Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/get?password="+password+"&mac="+macaddress,
+        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/get?password=zuvate@yahoo.com&mac=02:00:00:00:00:00",
                             new Response.Listener<String>()
                             {
                                 @Override
@@ -227,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                                         for (int i = 0; i < jsoArray.length(); i++) {
                                             JSONObject person = (JSONObject) jsoArray
                                                     .get(i);
-                                            String name = person.getString("name");
+                                            String name = person.getString("NameEn");
                                             if(name.equalsIgnoreCase("0"))
                                             {
                                                 Log.d("Response", response.toString());

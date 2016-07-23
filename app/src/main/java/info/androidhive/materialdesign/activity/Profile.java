@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +26,7 @@ import info.androidhive.materialdesign.R;
 public class Profile extends Fragment {
 
     TextView name;
+    ImageView imageprofile;
     public Profile() {
         // Required empty public constructor
     }
@@ -38,8 +42,14 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         name=(TextView)rootView.findViewById(R.id.name);
+        imageprofile=(ImageView)rootView.findViewById(R.id.profile_image);
         //  Toast.makeText(getActivity(),response.toString(),Toast.LENGTH_LONG).show();
             name.setText(MainActivity.name);
+        Glide.with(getActivity())
+                .load(MainActivity.profile.replace("https", "http"))
+                .asBitmap()
+                .fitCenter()
+                .into(imageprofile);
         // Inflate the layout for this fragment
         return rootView;
     }
