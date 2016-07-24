@@ -71,7 +71,7 @@ public class LeaveDataAdapter extends RecyclerView.Adapter<LeaveDataAdapter.View
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context,""+position,Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,""+position,Toast.LENGTH_LONG).show();
                 Intent i=new Intent(context, Leave_Detail.class);
                 i.putExtra("object",attendence);
                 i.putExtra("position",position);

@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,46 +20,53 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
+         android:orientation="horizontal"
         android:id="@+id/layout"
-        android:layout_below="@+id/label"
-        android:weightSum="4">
+        android:weightSum="3"
+
+    >
         <TextView
              android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="Emp Id"
+            android:layout_weight="1.05"
             android:textSize="15sp"
-            android:text="Employee Id"
+            android:textColor="#FF0000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+        <TextView
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
             android:layout_weight="1.0"
-            android:layout_width="wrap_content"
+             android:text="Check In"
+            android:textColor="#FF0000"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
         <TextView
 
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1.5"
-            android:text="Check In"
-            android:layout_width="wrap_content"
+            android:textSize="15sp"
+             android:text="Check Out"
+            android:layout_weight="1.0"
+            android:textColor="#FF0000"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
         <TextView
 
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="18sp"
-            android:layout_weight="1.2"
-            android:text="Check Out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" />
-        <TextView
-
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="18sp"
-             android:text="Total Work Hour"
+            android:textSize="15sp"
+            android:layout_weight="0"
+             android:text="Work Hr"
+            android:paddingRight="5dp"
+            android:textColor="#FF0000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
@@ -70,4 +77,4 @@
         android:layout_below="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</RelativeLayout>
+</LinearLayout>

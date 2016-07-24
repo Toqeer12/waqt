@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -34,67 +37,456 @@
         android:textSize="25dp"
         android:text="Leave History"
         android:textStyle="bold"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="2">
 
-    <TextView
 
-        android:layout_alignParentTop="true"
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scr_layout">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:background="@drawable/waqt_leavehistorydet">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="9dp"
+                android:text="From Leave"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                  android:textSize="15dp"
+                android:textColor="#000000"
+                 android:text="Leave History"
+                android:id="@+id/fromleave"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/waqt_leavehistorydet">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="To Leave"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:id="@+id/toleave"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/waqt_leavehistorydet">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Quantity"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:layout_weight="1"
+                android:id="@+id/quantity"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/waqt_leavehistorydet">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Reason"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/reason"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/waqt_leavehistorydet">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="10dp"
+                android:text="Leave Status"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:id="@+id/leavestatus"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/waqt_leavehistorydet">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="12dp"
+                android:text="Apply Date"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/apply_date"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/waqt_leavehistorydet">
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="15dp"
+                    android:text="Process Date"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/proces_date"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
         android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="4dp"
-        android:layout_weight="0.5"
-        android:text="Leave History"
-        android:textStyle="bold"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:id="@+id/from"/>
-</LinearLayout>
-    <LinearLayout
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/waqt_leavehistorydet">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Term Start"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/term_start"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+
+    </LinearLayout>    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/waqt_leavehistorydet">
 
-        <TextView
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:layout_weight="0.5"
-            android:text="Leave History"
-            android:textStyle="bold"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:id="@+id/to"/>
-    </LinearLayout>
-    <LinearLayout
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Term End"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/term_end"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+    </LinearLayout>    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/waqt_leavehistorydet">
 
-        <TextView
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:layout_weight="0.5"
-            android:text="Leave History"
-            android:textStyle="bold"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:id="@+id/apply_date"/>
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Concur Type"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:id="@+id/con_type"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+    </LinearLayout>    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/waqt_leavehistorydet">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Unit Type"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/unit_type"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+
+    </LinearLayout>    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/waqt_leavehistorydet">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Paid"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/paid"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+    </LinearLayout>    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/waqt_leavehistorydet">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:text="Title Eng"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:text="Leave History"
+                android:id="@+id/title_en"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+
 </LinearLayout>

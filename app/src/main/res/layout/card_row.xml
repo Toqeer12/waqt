@@ -17,24 +17,23 @@
             android:id="@+id/emp_id"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="18sp"
             android:text="Hello"
-            android:layout_weight="1.5"
+            android:layout_weight="1.2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_weight="1.0"
+            android:layout_weight="1.5"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/checkin_date"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold" />
@@ -43,7 +42,6 @@
                 android:id="@+id/checkin_time"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="18sp"
 
                 android:text="Hello"
                 android:layout_width="wrap_content"
@@ -60,7 +58,6 @@
         android:id="@+id/checkout_date"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textSize="18sp"
 
         android:text="Hello"
         android:layout_width="wrap_content"
@@ -70,7 +67,6 @@
         android:id="@+id/checkout_time"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textSize="18sp"
 
         android:text="Hello"
         android:layout_width="wrap_content"
@@ -83,9 +79,9 @@
             android:id="@+id/total_hour"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="18sp"
             android:layout_weight="0.5"
             android:text="Hello"
+            android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>

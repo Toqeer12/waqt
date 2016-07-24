@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +52,7 @@ public class Attendence extends Fragment {
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefsAddendance";
     SharedPreferences.Editor editor;
-    RelativeLayout layout;
+    LinearLayout layout;
     ProgressDialog progressDialog;
     String[] checkin_output;
     String[] checkout_output;
@@ -77,7 +78,7 @@ public class Attendence extends Fragment {
         attendence=new ArrayList<Attendence_history>();
         View rootView = inflater.inflate(R.layout.fragment_attendence, container, false);
         progressDialog = new ProgressDialog(getActivity());
-        layout=(RelativeLayout)rootView.findViewById(R.id.layout_attendance);
+        layout=(LinearLayout)rootView.findViewById(R.id.layout_attendance);
         recyclerView = (RecyclerView)rootView.findViewById(R.id.card_recycler_view);
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         recyclerView.setHasFixedSize(true);

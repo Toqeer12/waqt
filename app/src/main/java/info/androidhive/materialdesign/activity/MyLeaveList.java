@@ -60,6 +60,17 @@ public class MyLeaveList extends Fragment {
     DateFormat inputFormat2;
     DateFormat outputFormat2;
     String timeApplyDate_convt;
+    String fromLeave;
+    String toLeave;
+    String Qunatity;
+    String  reason;
+
+    String TermStart;
+    String TermEnd;
+    String ProcessDate;
+    String ConcurrencyType;
+    String UnitType;
+    String isPaid;
 
     String LeaveTitle,ApplyDate,Status;
     public MyLeaveList() {
@@ -110,7 +121,7 @@ public class MyLeaveList extends Fragment {
                             progressDialog.dismiss();
 
                         }
-                    }, 3000);
+                    }, 2000);
 
 
 
@@ -154,6 +165,16 @@ public class MyLeaveList extends Fragment {
                     LeaveTitle = person.getString("TitleEn");
                     ApplyDate = person.getString("ApplyDate");
                     Status = person.getString("LeaveStatus");
+                    fromLeave=person.getString("fromLeave");
+                    toLeave=person.getString("toLeave");
+                    reason=person.getString("reason");
+                    TermStart=person.getString("TermStart");
+                    TermEnd=person.getString("TermEnd");
+                    Qunatity=person.getString("Qunatity");
+                    ProcessDate=person.getString("ProcessDate");
+                    UnitType=person.getString("UnitType");
+                    ConcurrencyType=person.getString("ConcurrencyType");
+                    isPaid=person.getString("isPaid");
                     Applydate = ApplyDate.split("T");
 
                     inputFormat2 = new SimpleDateFormat("HH:mm:ss");
@@ -173,7 +194,9 @@ public class MyLeaveList extends Fragment {
                     } catch (Exception ex) {
 
                     }
-                    leaveobject.add(new Leave_Model(Applydate[0],timeApplyDate_convt,Status,LeaveTitle));
+                   // leaveobject.add(new Leave_Model(Applydate[0],timeApplyDate_convt,Status,LeaveTitle));
+                    leaveobject.add(new Leave_Model(fromLeave, toLeave, Qunatity,  reason,  timeApplyDate_convt, isPaid, Status,  Applydate[0],  TermStart,  TermEnd,  ProcessDate,  LeaveTitle,  ConcurrencyType,  UnitType));
+
                     adapter = new LeaveDataAdapter(getActivity(), leaveobject);
                     recyclerView.setAdapter(adapter);
 
@@ -225,6 +248,16 @@ public class MyLeaveList extends Fragment {
                                     LeaveTitle = person.getString("TitleEn");
                                     ApplyDate = person.getString("ApplyDate");
                                     Status = person.getString("LeaveStatus");
+                                    fromLeave=person.getString("fromLeave");
+                                    toLeave=person.getString("toLeave");
+                                    reason=person.getString("reason");
+                                    TermStart=person.getString("TermStart");
+                                    TermEnd=person.getString("TermEnd");
+                                    Qunatity=person.getString("Qunatity");
+                                    ProcessDate=person.getString("ProcessDate");
+                                    UnitType=person.getString("UnitType");
+                                    ConcurrencyType=person.getString("ConcurrencyType");
+                                    isPaid=person.getString("isPaid");
                                     Applydate = ApplyDate.split("T");
 
                                         inputFormat2 = new SimpleDateFormat("HH:mm:ss");
@@ -244,7 +277,8 @@ public class MyLeaveList extends Fragment {
                                         } catch (Exception ex) {
 
                                         }
-                                        leaveobject.add(new Leave_Model(Applydate[0],timeApplyDate_convt,Status,LeaveTitle));
+                                    //    leaveobject.add(new Leave_Model(Applydate[0],timeApplyDate_convt,Status,LeaveTitle));
+                                        leaveobject.add(new Leave_Model(fromLeave, toLeave, Qunatity,  reason,  timeApplyDate_convt, isPaid, Status,  Applydate[0],  TermStart,  TermEnd,  ProcessDate,  LeaveTitle,  ConcurrencyType,  UnitType));
                                         adapter = new LeaveDataAdapter(getActivity(), leaveobject);
                                         recyclerView.setAdapter(adapter);
 
