@@ -123,7 +123,7 @@ public void OFFLINE_ATTENDACE()
 {
     String json_array = sharedpreferences.getString("AttendanceJsonArray", null);
     Log.d("Response",""+json_array);
-    if (json_array.length() == 0) {
+    if (json_array==null) {
 
         Snack_Bar("Record Not Found");
         progressDialog.dismiss();

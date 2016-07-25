@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
 
                         Glide.with(getApplicationContext())
-                                .load(profile.replace("https", "http"))
+                                .load(comp_logo.replace("https", "http"))
                                 .asBitmap()
                                 .fitCenter()
                                 .into(img);

@@ -48,162 +48,936 @@
             android:orientation="vertical"
             android:id="@+id/ver_layout"
             >
-
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:id="@+id/layout2"
-                android:layout_below="@+id/layout1"
                 android:background="@drawable/waqt_leavehistorydet">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                    android:src="@drawable/waqt_nickname"
-                    android:paddingTop="3dp"
-                    android:layout_marginLeft="165dp"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-                    />
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Nick Name"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/nick_name"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/layout3"
-                android:paddingTop="5dp"
-                android:layout_below="@+id/layout2">
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                    android:src="@drawable/waqt_employe"
-                    android:paddingTop="3dp"
-                    android:paddingLeft="5dp"/>
-                <EditText
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:editable="false"
-                    android:id="@+id/username2"
-                    android:hint="DOB"
-                    android:paddingTop="10dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/layout4"
-                android:paddingTop="5dp"
-                android:layout_below="@+id/layout3">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:paddingTop="3dp"
-                    android:layout_height="wrap_content"
-                     android:src="@drawable/waqt_maritalstatus"
-                    android:paddingLeft="5dp"/>
-                <EditText
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Date of Birth"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:editable="false"
-                    android:id="@+id/username3"
-                    android:hint="Marital Status"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/layout5"
-                android:paddingTop="5dp"
-                android:layout_below="@+id/layout4">
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/dob"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                    android:src="@drawable/waqt_highest_qualification"
-                    android:paddingTop="3dp"
-                    android:paddingLeft="5dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/username4"
-                    android:hint="Highest Qualification"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:orientation="horizontal"
-                android:id="@+id/layout6"
-                android:layout_below="@+id/layout5">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                    android:src="@drawable/waqt_otherdetails"
-                    android:paddingTop="3dp"
-                    android:paddingLeft="5dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/username5"
-                    android:inputType="none"
-                    android:editable="false"
-                    android:hint="Other Detail"
-                    />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/layout7"
-                android:paddingTop="5dp"
-                android:layout_below="@+id/layout6">
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                    android:src="@drawable/waqt_dlicense"
-                    android:paddingTop="3dp"
-                    android:paddingLeft="5dp"/>
-                <EditText
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:editable="false"
-                    android:id="@+id/username6"
-                    android:hint="Driving Licence #"
-                    />
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Email"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/email"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="5dp"
-                android:id="@+id/layout8"
-                android:layout_below="@+id/layout7">
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                    android:src="@drawable/waqt_dlicenseexpiry"
-                    android:paddingTop="3dp"
-                    android:paddingLeft="5dp"/>
-                <EditText
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:editable="false"
-                    android:id="@+id/username7"
-                    android:hint="Licence Expire"
-                    />
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Country"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/country"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Designation"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/designation"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Department"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/dept"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Comp Name"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/compId"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Gender"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/gend"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="High Quali"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/highqual"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Marital Status"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/marital"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="DL Number"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/dlno"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="DL Expiry"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/dlexp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Emp Code"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/employecode"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Other Detail"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/othdetail"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="SSN"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/ssn"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="SIN"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/sin"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Level"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/level"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Mil Service"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/mservice"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Join Date"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                     android:id="@+id/jdate"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Emp type"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/emptyp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Grade"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/grde"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Shfit"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/shfit"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Work Hour"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/whour"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Shift Start"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/sfstart"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Shift End"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/sfend"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:background="@drawable/waqt_leavehistorydet">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="9dp"
+                    android:text="Grade Val"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="Leave History"
+                    android:id="@+id/grdval"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
             </LinearLayout>
         </LinearLayout>
 

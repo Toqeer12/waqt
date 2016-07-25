@@ -147,7 +147,7 @@ public class MyLeaveList extends Fragment {
     {
         String json_array = sharedpreferences.getString("LeaveHistoryJsonArray", null);
         Log.d("Response",""+json_array);
-        if (json_array.length() == 0) {
+        if (json_array==null) {
 
             Snack_Bar("Record Not Found");
             progressDialog.dismiss();
