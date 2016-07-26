@@ -36,6 +36,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import connection.ConnectivityReceiver;
 import info.androidhive.materialdesign.R;
@@ -191,7 +193,7 @@ public void OFFLINE_ATTENDACE()
 
         String url ="http://schoolhrms.mydreamapps.com/api/testapi/get?password="+Id;
         Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/GetAttendanceHistory?id="+Id,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/PostAttendanceHistory",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -282,7 +284,15 @@ public void OFFLINE_ATTENDACE()
                         Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
 
+                params.put("id",MainActivity.EmployeeId);
+                params.put("Content-Type", "application/json; charset=utf-8");
+
+                return params;
+            }
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());

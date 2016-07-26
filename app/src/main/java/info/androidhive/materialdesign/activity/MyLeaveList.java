@@ -35,6 +35,8 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import connection.ConnectivityReceiver;
 import info.androidhive.materialdesign.R;
@@ -216,7 +218,7 @@ public class MyLeaveList extends Fragment {
 
         String url ="http://schoolhrms.mydreamapps.com/api/testapi/GetLeaveHistory?id=23";
         Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/GetLeaveHistory?id="+Id,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/PostGetLeaveHistory",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -304,6 +306,15 @@ public class MyLeaveList extends Fragment {
                         Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("id",MainActivity.EmployeeId);
+                params.put("Content-Type", "application/json; charset=utf-8");
+
+                return params;
+            }
 
         };
 

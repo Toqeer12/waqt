@@ -128,32 +128,7 @@ public void Check_In() throws IOException {
 
 
         if (mBluetoothAdapter.isEnabled()) {
-            //     status.setText("BlueTooth is currently switched ON");
-            //     changeStatus.setText("Switch OFF Bluetooth");
-          /*  beaconManager.setMonitoringListener(new BeaconManager.MonitoringListener() {
-                @Override
-                public void onEnteredRegion(Region region, List<Beacon> list) {
-                    Log.d("Response","Enter in Regin");
 
-
-                }
-                @Override
-                public void onExitedRegion(Region region) {
-                    // could add an "exit" notification too if you want (-:
-                    Log.d("Response","You are out of the Regin");
-                }
-
-            });
-            beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
-                @Override
-                public void onServiceReady() {
-                    int major=Integer.parseInt(MainActivity.major);
-                    int minor=Integer.parseInt(MainActivity.minor);
-                    beaconManager.startMonitoring(new Region("monitored region",
-                            UUID.fromString(MainActivity.uuid), major, minor));
-                }
-            });
-*/
             if (isScanning)
             {
                 if (mBluetoothAdapter != null)
@@ -283,36 +258,23 @@ public void Check_In() throws IOException {
                   major_conv=String.valueOf(major);
                   minor_conv=String.valueOf(minor);
                 if(ConnectivityReceiver.isConnected())
+
                 {
-                    Post_Check_in_out(major_conv,minor_conv,uuid);
-                    Log.d("Response","Found");
 
-   /*                 Calendar c = Calendar.getInstance();
-                    int seconds = c.get(Calendar.SECOND);
-                    int min = c.get(Calendar.MINUTE);
-                    int hour = c.get(Calendar.HOUR);
-                    int dd = c.get(Calendar.DATE);
-                    int mm = c.get(Calendar.MONTH);
-                    int yy = c.get(Calendar.YEAR);*/
+                    mBluetoothAdapter.stopLeScan(leScanCallback);
+                    String ibeaconId = uuid+""+major_conv+""+minor_conv;
 
-                 /*   Log.d("ResponseTime: ", hour+":"+min+":"+seconds);
-                    Log.d("ResponseDate: ", dd+"/"+mm+"/"+yy);*/
-
+                    currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    Log.d("Response Data2",currentDateTimeString);
+                    Post_Check_in_out(ibeaconId,currentDateTimeString);
+                    Log.d("Response","UUID"+uuid+"Major"+major+"Minor"+minor);
                 }
                 else
                 {
                     mBluetoothAdapter.stopLeScan(leScanCallback);
+                    Log.d("Response","UUID"+uuid+"Major"+major+"Minor"+minor);
                     Log.d("Response","Internet Not Found");
                     Log.d("Insert: ", "Inserting ..");
-       /*              Calendar c = Calendar.getInstance();
-                    int seconds = c.get(Calendar.SECOND);
-                    int min = c.get(Calendar.MINUTE);
-                    int hour = c.get(Calendar.HOUR);
-                    int dd = c.get(Calendar.DATE);
-                    int mm = c.get(Calendar.MONTH);
-                    int yy = c.get(Calendar.YEAR);
-                    Log.d("ResponseTime: ", hour+":"+min+":"+seconds);
-                    Log.d("ResponseDate: ", dd+"/"+mm+"/"+yy);*/
                     Snack_Bar("Checked Successfully");
                     mediaPlayer.start();
                       currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
@@ -327,6 +289,8 @@ public void Check_In() throws IOException {
             }
             else if(patternFound==false)
             {
+
+                // WIFI Check
                 Post_Check_In_Out_Offical(currentDateTimeString, MainActivity.emii);
                 POST_Check_ERROR();
             }
@@ -358,35 +322,18 @@ public void Check_In() throws IOException {
     }
 
 
-    private void Post_Check_in_out (final String major, String minor, String uuid){
+    private void Post_Check_in_out (final String ibeacon, final String datatime){
         mBluetoothAdapter.stopLeScan(leScanCallback);
-
-        final String ibeaconId = major+""+minor+""+uuid;
-        // JsonArrayRequest stringRequest = new JsonArrayRequest (Request.Method.POST, "http://192.168.1.140:8080/test.php",
-        //  new Response.Listener<JSONArray>() {
-        //     @Override
-        //    public void onResponse(JSONArray response) {
-        //       Log.d("Response",response.toString());
-        //       editor.putString("jsonArray",response.toString());
-        //       editor.commit();
-
-        //       Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        //      startActivity(intent);
-        //      finish();
-        //   }
-        Log.d("Response", ibeaconId);
+        Log.d("Response", ibeacon);
 
         Log.d("Response", MainActivity.emii);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test2.php",
+        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/ValidateIBeaconForCompany",
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response) {
                         // response
                         Log.d("Response", response);
-                       //Toast.makeText(getActivity(), response,Toast.LENGTH_LONG).show();
-//                        editor.putString("jsonArray",response);
-  //                      editor.commit();
                         Snack_Bar("Checked Successfully");
                         mediaPlayer.start();
 
@@ -404,8 +351,12 @@ public void Check_In() throws IOException {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put(KEY_IBAECONID,ibeaconId);
-                params.put(KEY_MACADDRESS,MainActivity.emii);
+
+                params.put("EmpId",MainActivity.EmployeeId);
+                params.put("CheckDataTime",datatime);
+                params.put("CompId",MainActivity.comp_id);
+                params.put("IbeaconId",ibeacon);
+                                params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;
             }
@@ -440,23 +391,8 @@ public void Check_In() throws IOException {
     private void Post_Check_In_Out_Offical (final String currentdate, String minor ){
         mBluetoothAdapter.stopLeScan(leScanCallback);
 
-       // final String ibeaconId = major+""+minor+""+uuid;
-        //// JsonArrayRequest stringRequest = new JsonArrayRequest (Request.Method.POST, "http://192.168.1.140:8080/test.php",
-        //  new Response.Listener<JSONArray>() {
-        //     @Override
-        //    public void onResponse(JSONArray response) {
-        //       Log.d("Response",response.toString());
-        //       editor.putString("jsonArray",response.toString());
-        //       editor.commit();
-
-        //       Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        //      startActivity(intent);
-        //      finish();
-        //   }
-       // Log.d("Response", ibeaconId);
-
         Log.d("Response", MainActivity.emii);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test2.php",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/ValidateIBeaconForCompany?companyID="+1+"&IbeaconId="+"B9407F30-F5F8-466E-AFF9-25556B57FE6D733726305",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -480,14 +416,7 @@ public void Check_In() throws IOException {
                         // Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
-            @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                params.put(KEY_IBAECONID,currentdate);
-                params.put(KEY_MACADDRESS,MainActivity.emii);
 
-                return params;
-            }
 
         };
 

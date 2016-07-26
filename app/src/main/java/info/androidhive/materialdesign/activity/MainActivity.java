@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public static final String pass = "emailKey";
     public static final String emi = "nameKey";
     SharedPreferences sharedpreferences;
-    public static String emii,password;
+    public static String emii,password,comp_id;
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         comp_logo = person.getString("Company_image");
                         profile=person.getString("Emp_image");
                         EmployeeId = person.getString("EmployeeId");
-
+                        comp_id=person.getString("Company_id");
 
                         Glide.with(getApplicationContext())
                                 .load(comp_logo.replace("https", "http"))

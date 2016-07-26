@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     public static final String pass = "emailKey";
     public static final String emi = "nameKey";
     private ArrayList<login_model_user> ibeacon;
-    public static final String KEY_PASSWORD = "password";
-    public static final String KEY_MACADDRESS = "macaddress";
+    public static final String KEY_PASSWORD = "Password";
+    public static final String KEY_MACADDRESS = "MAC";
     TelephonyManager telephonyManager;
     @Bind(R.id.input_password)
     EditText _passwordText;
@@ -214,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
 
             String url ="http://schoolhrms.mydreamapps.com/api/testapi/get?password="+password+"&mac"+macaddress;
             Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/get?password=zuvate@yahoo.com&mac=02:00:00:00:00:00",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/PostLogin",
                             new Response.Listener<String>()
                             {
                                 @Override
@@ -262,14 +262,15 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
-//            @Override
-//            protected Map<String,String> getParams(){
-//                Map<String,String> params = new HashMap<String, String>();
-//              //  params.put(KEY_MACADDRESS,macaddress);
-//                params.put(KEY_PASSWORD,password);
-//
-//                return params;
-//            }
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put(KEY_MACADDRESS,"02:00:00:00:00:00");
+                params.put(KEY_PASSWORD,"zuvate@yahoo.com");
+                params.put("Content-Type", "application/json; charset=utf-8");
+
+                return params;
+            }
 
         };
 
