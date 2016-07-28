@@ -67,6 +67,7 @@ public class Dashboard extends Fragment {
     DatabaseHandler db ;
     Fragment fragment = null;
     String title;
+    String status;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -144,7 +145,7 @@ public class Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    Check_out();
+                    Check_out("check_out");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -175,6 +176,7 @@ public void Check_In(String check_in) throws IOException {
             {
                 if (mBluetoothAdapter != null)
                 {
+                    status=check_in;
                     mBluetoothAdapter.startLeScan(leScanCallback);
                 }
             }
@@ -190,7 +192,7 @@ public void Check_In(String check_in) throws IOException {
 
 
 
-    public void Check_out() throws IOException {
+    public void Check_out(String check_out) throws IOException {
 
         if (mBluetoothAdapter.isEnabled()) {
         //     status.setText("BlueTooth is currently switched ON");
@@ -198,6 +200,8 @@ public void Check_In(String check_in) throws IOException {
             if (isScanning)
             {
                 if (mBluetoothAdapter != null)
+
+
                 {
                     mBluetoothAdapter.stopLeScan(leScanCallback);
 
@@ -207,6 +211,7 @@ public void Check_In(String check_in) throws IOException {
             {
                 if (mBluetoothAdapter != null)
                 {
+                    status=check_out;
                     mBluetoothAdapter.startLeScan(leScanCallback);
                 }
             }
@@ -228,7 +233,8 @@ public void Check_In(String check_in) throws IOException {
 
 
 
-     BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
+
+    BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
         String ibeaconId;
 
         @Override
@@ -288,7 +294,7 @@ public void Check_In(String check_in) throws IOException {
                     mediaPlayer.start();
                     currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                     Log.d("Response Data", currentDateTimeString);
-                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, ibeaconId));
+                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, ibeaconId,status));
 
                     Intent intent = new Intent(getActivity(), BackgroundService.class);
                     getActivity().startService(intent);
@@ -311,7 +317,7 @@ public void Check_In(String check_in) throws IOException {
                     mediaPlayer.start();
                     currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                     Log.d("Response Data2", currentDateTimeString);
-                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, "Not"));
+                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, "Not",status));
 
                     Intent intent = new Intent(getActivity(), BackgroundService.class);
                     getActivity().startService(intent);
@@ -374,6 +380,7 @@ public void Check_In(String check_in) throws IOException {
                 params.put("DT",datatime);
                 params.put("CompId",MainActivity.comp_id);
                 params.put("IbeaconId",ibeacon);
+                params.put("status",status);
                 params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;
@@ -465,6 +472,7 @@ public void Check_In(String check_in) throws IOException {
                 params.put("DT",currentdate);
                 params.put("CompId",MainActivity.comp_id);
                 params.put("IbeaconId",ibeaconId);
+                params.put("status",status);
                 params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;

@@ -16,13 +16,15 @@ public class Addendance_DB_Model {
 	String _CompId;
 	String _DateTime;
 	String _IbeaconId;
+	String status;
 
 	// Empty constructor
-	public Addendance_DB_Model( String _EmpId, String _CompId, String _DateTime, String _IbeaconId) {
+	public Addendance_DB_Model( String _EmpId, String _CompId, String _DateTime, String _IbeaconId,String status) {
 		this._EmpId = _EmpId;
 		this._CompId = _CompId;
 		this._DateTime = _DateTime;
 		this._IbeaconId = _IbeaconId;
+		this.status=status;
  	}
 
 	public Addendance_DB_Model() {
@@ -36,6 +38,14 @@ public class Addendance_DB_Model {
 
 	public void set_id(int _id) {
 		this._id = _id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String get_IbeaconId() {
@@ -70,11 +80,12 @@ public class Addendance_DB_Model {
 		this._CompId = _CompId;
 	}
 
-	public Addendance_DB_Model(int id,String _EmpId, String _CompId, String _DateTime, String _IbeaconId) {
+	public Addendance_DB_Model(int id,String _EmpId, String _CompId, String _DateTime, String _IbeaconId,String status) {
 		this._EmpId = _EmpId;
 		this._CompId = _CompId;
 		this._DateTime = _DateTime;
 		this._IbeaconId = _IbeaconId;
 		this._id=id;
+		this.status=status;
 	}
 }

@@ -68,7 +68,7 @@ public class BackgroundService extends Service {
               List<Addendance_DB_Model> contacts = db.getAllContacts();
 
                         for (Addendance_DB_Model cn : contacts) {
-                            String log = "Id: "+cn.get_id()+" ,Name: " + cn.get_CompId() + " ,Phone: " + cn.get_EmpId()+"Date"+ cn.get_DateTime()+"Ibeacon"+cn.get_IbeaconId();
+                            String log = "Id: "+cn.get_id()+" ,Name: " + cn.get_CompId() + " ,Phone: " + cn.get_EmpId()+"Date"+ cn.get_DateTime()+"Ibeacon"+cn.getStatus();
                             // Writing Contacts to log
                             Log.d("Reading: ", log);
 
@@ -135,6 +135,7 @@ public class BackgroundService extends Service {
                     params.put("EmployeId", cn.get_EmpId());
                     params.put("IbeaconId", cn.get_IbeaconId());
                     params.put("DT", cn.get_DateTime());
+                    params.put("status",cn.getStatus());
                     params.put("Content-Type", "application/json; charset=utf-8");
                     return params;
                 }

@@ -29,6 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_EMP_ID = "phone_number";
 	private static final String KEY_DATETIME="DateTime";
 	private static final String KEY_IBEACON_ID="ibeaconId";
+	private static final String KEY_Status="status";
 	public DatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -38,7 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_COMP_ID + " TEXT,"+ KEY_EMP_ID + " TEXT,"+ KEY_IBEACON_ID + " TEXT,"
-				+ KEY_DATETIME + " TEXT" + ")";
+				+ KEY_DATETIME + " TEXT"+KEY_Status + " TEXT" + ")";
 		db.execSQL(CREATE_CONTACTS_TABLE);
 	}
 
@@ -65,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_DATETIME, contact.get_DateTime());
 		values.put(KEY_EMP_ID,contact.get_EmpId());
 		values.put(KEY_IBEACON_ID,contact.get_IbeaconId());// Addendance_DB_Model Phone
-
+		values.put(KEY_Status,contact.getStatus());
 		// Inserting Row
 		db.insert(TABLE_CONTACTS, null, values);
 		db.close(); // Closing database connection
@@ -76,13 +77,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-						KEY_EMP_ID,KEY_COMP_ID, KEY_DATETIME,KEY_IBEACON_ID }, KEY_ID + "=?",
+						KEY_EMP_ID,KEY_COMP_ID, KEY_DATETIME,KEY_IBEACON_ID,KEY_Status }, KEY_ID + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
 		Addendance_DB_Model contact = new Addendance_DB_Model(Integer.parseInt(cursor.getString(0)),cursor.getString(1),
-				cursor.getString(2), cursor.getString(3),cursor.getString(4));
+				cursor.getString(2), cursor.getString(3),cursor.getString(4),cursor.getString(5));
 		// return contact
 		return contact;
 	}
@@ -105,6 +106,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				contact.set_EmpId(cursor.getString(2));
 				contact.set_IbeaconId(cursor.getString(3));
 				contact.set_DateTime(cursor.getString(4));
+				contact.setStatus(cursor.getString(5));
 				// Adding contact to list
 				contactList.add(contact);
 			} while (cursor.moveToNext());
