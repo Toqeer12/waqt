@@ -9,7 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import info.androidhive.materialdesign.model.Contact;
+import info.androidhive.materialdesign.model.Addendance_DB_Model;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -21,13 +21,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "Waqat_DB";
 
 	// Contacts table name
-	private static final String TABLE_CONTACTS = "waqat";
+	private static final String TABLE_CONTACTS = "Waqt_Attendance";
 
 	// Contacts Table Columns names
 	private static final String KEY_ID = "id";
-	private static final String KEY_EMII = "name";
-	private static final String KEY_DATETIME = "phone_number";
-
+	private static final String KEY_COMP_ID = "name";
+	private static final String KEY_EMP_ID = "phone_number";
+	private static final String KEY_DATETIME="DateTime";
+	private static final String KEY_IBEACON_ID="ibeaconId";
 	public DatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -36,7 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_EMII + " TEXT,"
+				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_COMP_ID + " TEXT,"+ KEY_EMP_ID + " TEXT,"+ KEY_IBEACON_ID + " TEXT,"
 				+ KEY_DATETIME + " TEXT" + ")";
 		db.execSQL(CREATE_CONTACTS_TABLE);
 	}
@@ -56,12 +57,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	 */
 
 	// Adding new contact
-	public void addContact(Contact contact) {
+	public void addContact(Addendance_DB_Model contact) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_EMII, contact.getName()); // Contact Name
-		values.put(KEY_DATETIME, contact.getPhoneNumber()); // Contact Phone
+		values.put(KEY_COMP_ID, contact.get_CompId()); // Addendance_DB_Model Name
+		values.put(KEY_DATETIME, contact.get_DateTime());
+		values.put(KEY_EMP_ID,contact.get_EmpId());
+		values.put(KEY_IBEACON_ID,contact.get_IbeaconId());// Addendance_DB_Model Phone
 
 		// Inserting Row
 		db.insert(TABLE_CONTACTS, null, values);
@@ -69,24 +72,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	// Getting single contact
-	public Contact getContact(int id) {
+	public Addendance_DB_Model getContact(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-						KEY_EMII, KEY_DATETIME }, KEY_ID + "=?",
+						KEY_EMP_ID,KEY_COMP_ID, KEY_DATETIME,KEY_IBEACON_ID }, KEY_ID + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2));
+		Addendance_DB_Model contact = new Addendance_DB_Model(Integer.parseInt(cursor.getString(0)),cursor.getString(1),
+				cursor.getString(2), cursor.getString(3),cursor.getString(4));
 		// return contact
 		return contact;
 	}
 	
 	// Getting All Contacts
-	public List<Contact> getAllContacts() {
-		List<Contact> contactList = new ArrayList<Contact>();
+	public List<Addendance_DB_Model> getAllContacts() {
+		List<Addendance_DB_Model> contactList = new ArrayList<Addendance_DB_Model>();
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
 
@@ -96,10 +99,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-				Contact contact = new Contact();
-				contact.setID(Integer.parseInt(cursor.getString(0)));
-				contact.setName(cursor.getString(1));
-				contact.setPhoneNumber(cursor.getString(2));
+				Addendance_DB_Model contact = new Addendance_DB_Model();
+				contact.set_id(Integer.parseInt(cursor.getString(0)));
+				contact.set_CompId(cursor.getString(1));
+				contact.set_EmpId(cursor.getString(2));
+				contact.set_IbeaconId(cursor.getString(3));
+				contact.set_DateTime(cursor.getString(4));
 				// Adding contact to list
 				contactList.add(contact);
 			} while (cursor.moveToNext());
@@ -109,24 +114,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		return contactList;
 	}
 
-	// Updating single contact
-	public int updateContact(Contact contact) {
-		SQLiteDatabase db = this.getWritableDatabase();
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_EMII, contact.getName());
-		values.put(KEY_DATETIME, contact.getPhoneNumber());
-
-		// updating row
-		return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(contact.getID()) });
-	}
 
 	// Deleting single contact
-	public void deleteContact(Contact contact) {
+	public void deleteContact(Addendance_DB_Model contact) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-				new String[] { String.valueOf(contact.getID()) });
+				new String[] { String.valueOf(contact.get_id()) });
 		db.close();
 	}
 

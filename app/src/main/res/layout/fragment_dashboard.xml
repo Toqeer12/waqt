@@ -4,32 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/dashboardlayout"
+    android:background="@drawable/waqt_dashboard_bg"
+
     tools:context=".activity.Dashboard">
 
-
-    <TextView
-        android:id="@+id/label"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingLeft="10dp"
-        android:textSize="45dp"
-        android:text="Dashboard"
-        android:textStyle="bold"/>
-
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/label"
-    android:text="Check-In"
-    android:id="@+id/checkin"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkin"
-        android:text="Check-out"
-        android:id="@+id/checkout"/>
+        android:background="@drawable/attendance_selector"
+        android:id="@+id/myattendance" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/check_out_selecor"
+        android:id="@+id/checkout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
+    <Button
+        android:id="@+id/myleave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/leave_selector"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/checkin" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arrow_selector"
+        android:id="@+id/checkin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/checkout" />
 </RelativeLayout>

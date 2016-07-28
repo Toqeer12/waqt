@@ -12,9 +12,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,30 +30,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
-import com.estimote.sdk.repackaged.retrofit_v1_9_0.retrofit.http.POST;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import DBHandle.DatabaseHandler;
 import connection.ConnectivityReceiver;
 import info.androidhive.materialdesign.R;
-import info.androidhive.materialdesign.model.Contact;
+import info.androidhive.materialdesign.model.Addendance_DB_Model;
 import services.BackgroundService;
 
 
 public class Dashboard extends Fragment {
     private MediaPlayer mediaPlayer;
-    Button checkin,checkout;
+    Button checkin,checkout,attendance,leave;
     private BeaconManager beaconManager;
     private Region region;
     private boolean isScanning = false;
@@ -70,6 +65,8 @@ public class Dashboard extends Fragment {
     String uuid;
     String currentDateTimeString;
     DatabaseHandler db ;
+    Fragment fragment = null;
+    String title;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -83,7 +80,7 @@ public class Dashboard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+         title = getString(R.string.app_name);
         //reference to the bluetooth adapter
         beaconManager = new BeaconManager(getActivity());
         db=new DatabaseHandler(getActivity());
@@ -94,13 +91,50 @@ public class Dashboard extends Fragment {
         layout= (RelativeLayout)rootView.findViewById(R.id.dashboardlayout);
         checkin=(Button)rootView.findViewById(R.id.checkin);
         checkout=(Button)rootView.findViewById(R.id.checkout);
+        attendance=(Button) rootView.findViewById(R.id.myattendance);
+        leave=(Button)rootView.findViewById(R.id.myleave);
+//
+//
+//        checkout.setVisibility(View.INVISIBLE);
+//        checkin.setVisibility(View.INVISIBLE);
 
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new Attendence();
+                title = getString(R.string.title_attendence);
 
+                if (fragment != null) {
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container_body, fragment);
+                    fragmentTransaction.commit();
+
+                    // set the toolbar title
+                }
+            }
+        });
+
+        leave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new MyLeaveList();
+                title = getString(R.string.title_leave);
+                if (fragment != null) {
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container_body, fragment);
+                    fragmentTransaction.commit();
+
+                    // set the toolbar title
+                }
+            }
+        });
         checkin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Check_In();
+                    Check_In("check_in");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -124,7 +158,7 @@ public class Dashboard extends Fragment {
     }
 
 
-public void Check_In() throws IOException {
+public void Check_In(String check_in) throws IOException {
 
 
         if (mBluetoothAdapter.isEnabled()) {
@@ -193,60 +227,35 @@ public void Check_In() throws IOException {
 
 
 
-    public void Snack_Bar_Cus()
 
-    {
+     BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
+        String ibeaconId;
 
-        Snackbar snackbar = Snackbar
-                .make(layout, "BlueTooth adapter not found", Snackbar.LENGTH_LONG)
-                .setAction("RETRY", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                        startActivityForResult(turnOn, 0);
-
-
-                    }
-                });
-        snackbar.setActionTextColor(Color.RED);
-        View sbView = snackbar.getView();
-        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(Color.WHITE);
-
-        snackbar.show();
-    }
-
-    private BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback()
-    {
         @Override
-        public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord)
-        {
+        public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
             int startByte = 2;
             boolean patternFound = false;
-            while (startByte <= 5)
-            {
-                if (    ((int) scanRecord[startByte + 2] & 0xff) == 0x02 && //Identifies an iBeacon
-                        ((int) scanRecord[startByte + 3] & 0xff) == 0x15)
-                { //Identifies correct data length
+            while (startByte <= 5) {
+                if (((int) scanRecord[startByte + 2] & 0xff) == 0x02 && //Identifies an iBeacon
+                        ((int) scanRecord[startByte + 3] & 0xff) == 0x15) { //Identifies correct data length
                     patternFound = true;
                     break;
                 }
                 startByte++;
             }
-            Log.d("Response",""+patternFound);
-            if (patternFound==true)
-            {
+            Log.d("Response", "" + patternFound);
+            if (patternFound == true) {
                 //Convert to hex String
                 byte[] uuidBytes = new byte[16];
                 System.arraycopy(scanRecord, startByte + 4, uuidBytes, 0, 16);
                 String hexString = bytesToHex(uuidBytes);
 
                 //UUID detection
-                  uuid =  hexString.substring(0,8) + "-" +
-                        hexString.substring(8,12) + "-" +
-                        hexString.substring(12,16) + "-" +
-                        hexString.substring(16,20) + "-" +
-                        hexString.substring(20,32);
+                uuid = hexString.substring(0, 8) + "-" +
+                        hexString.substring(8, 12) + "-" +
+                        hexString.substring(12, 16) + "-" +
+                        hexString.substring(16, 20) + "-" +
+                        hexString.substring(20, 32);
 
                 // major
                 final int major = (scanRecord[startByte + 20] & 0xff) * 0x100 + (scanRecord[startByte + 21] & 0xff);
@@ -255,55 +264,64 @@ public void Check_In() throws IOException {
                 final int minor = (scanRecord[startByte + 22] & 0xff) * 0x100 + (scanRecord[startByte + 23] & 0xff);
                 byte txpw = scanRecord[29];
 
-                  major_conv=String.valueOf(major);
-                  minor_conv=String.valueOf(minor);
-                if(ConnectivityReceiver.isConnected())
+                major_conv = String.valueOf(major);
+                minor_conv = String.valueOf(minor);
+
+                if (ConnectivityReceiver.isConnected())
 
                 {
 
                     mBluetoothAdapter.stopLeScan(leScanCallback);
-                    String ibeaconId = uuid+""+major_conv+""+minor_conv;
+                    ibeaconId = uuid + "" + major_conv + "" + minor_conv;
 
                     currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                    Log.d("Response Data2",currentDateTimeString);
-                    Post_Check_in_out(ibeaconId,currentDateTimeString);
-                    Log.d("Response","UUID"+uuid+"Major"+major+"Minor"+minor);
-                }
-                else
-                {
+                    Log.d("Response Data2", currentDateTimeString);
+                    Post_Check_in_out(ibeaconId, currentDateTimeString);
+                    Log.d("Response", "UUID" + uuid + "Major" + major + "Minor" + minor);
+                } else {
+                    ibeaconId = uuid + "" + major_conv + "" + minor_conv;
                     mBluetoothAdapter.stopLeScan(leScanCallback);
-                    Log.d("Response","UUID"+uuid+"Major"+major+"Minor"+minor);
-                    Log.d("Response","Internet Not Found");
+                    Log.d("Response", "UUID" + uuid + "Major" + major + "Minor" + minor);
+                    Log.d("Response", "Internet Not Found");
                     Log.d("Insert: ", "Inserting ..");
                     Snack_Bar("Checked Successfully");
                     mediaPlayer.start();
-                      currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                    Log.d("Response Data2",currentDateTimeString);
-                    db.addContact(new Contact(currentDateTimeString, MainActivity.emii));
+                    currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    Log.d("Response Data", currentDateTimeString);
+                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, ibeaconId));
 
                     Intent intent = new Intent(getActivity(), BackgroundService.class);
                     getActivity().startService(intent);
                 }
 
 
-            }
-            else if(patternFound==false)
-            {
+            } else if (patternFound == false) {
 
                 // WIFI Check
-                Post_Check_In_Out_Offical(currentDateTimeString, MainActivity.emii);
-                POST_Check_ERROR();
+
+                if (ConnectivityReceiver.isConnected()) {
+                    Post_Check_In_Out_Offical(currentDateTimeString, "0");
+                    POST_Check_ERROR();
+                } else {
+                    mBluetoothAdapter.stopLeScan(leScanCallback);
+
+                    Log.d("Response", "Internet Not Found");
+                    Log.d("Insert: ", "Inserting ..");
+                    Snack_Bar("Checked Successfully");
+                    mediaPlayer.start();
+                    currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    Log.d("Response Data2", currentDateTimeString);
+                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, "Not"));
+
+                    Intent intent = new Intent(getActivity(), BackgroundService.class);
+                    getActivity().startService(intent);
+                }
+
             }
 
         }
     };
 
-    private void POST_Check_ERROR() {
-        mBluetoothAdapter.stopLeScan(leScanCallback);
-        Log.d("Response","Not Found");
-        Snack_Bar("Failed Please Try Again");
-       // Toast.makeText(getActivity(),"IBEACON Not Fount",Toast.LENGTH_LONG).show();
-    }
 
     /**
      * bytesToHex method
@@ -327,7 +345,7 @@ public void Check_In() throws IOException {
         Log.d("Response", ibeacon);
 
         Log.d("Response", MainActivity.emii);
-        StringRequest postRequest = new StringRequest(Request.Method.GET, "http://schoolhrms.mydreamapps.com/api/testapi/ValidateIBeaconForCompany",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/CheckINOUT",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -352,11 +370,11 @@ public void Check_In() throws IOException {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("EmpId",MainActivity.EmployeeId);
-                params.put("CheckDataTime",datatime);
+                params.put("EmployeId",MainActivity.EmployeeId);
+                params.put("DT",datatime);
                 params.put("CompId",MainActivity.comp_id);
                 params.put("IbeaconId",ibeacon);
-                                params.put("Content-Type", "application/json; charset=utf-8");
+                params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;
             }
@@ -372,6 +390,29 @@ public void Check_In() throws IOException {
         showSnack(isConnected);
     }
 
+
+    public void Snack_Bar_Cus()
+
+    {
+
+        Snackbar snackbar = Snackbar
+                .make(layout, "BlueTooth adapter not found", Snackbar.LENGTH_LONG)
+                .setAction("RETRY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                        startActivityForResult(turnOn, 0);
+
+
+                    }
+                });
+        snackbar.setActionTextColor(Color.RED);
+        View sbView = snackbar.getView();
+        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.WHITE);
+
+        snackbar.show();
+    }
     private void showSnack(boolean isConnected) {
         String message;
 
@@ -388,11 +429,11 @@ public void Check_In() throws IOException {
 
 
     }
-    private void Post_Check_In_Out_Offical (final String currentdate, String minor ){
+    private void Post_Check_In_Out_Offical (final String currentdate, final String ibeaconId ){
         mBluetoothAdapter.stopLeScan(leScanCallback);
 
         Log.d("Response", MainActivity.emii);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/ValidateIBeaconForCompany?companyID="+1+"&IbeaconId="+"B9407F30-F5F8-466E-AFF9-25556B57FE6D733726305",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/CheckINOUT",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -416,7 +457,18 @@ public void Check_In() throws IOException {
                         // Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
 
+                params.put("EmployeId",MainActivity.EmployeeId);
+                params.put("DT",currentdate);
+                params.put("CompId",MainActivity.comp_id);
+                params.put("IbeaconId",ibeaconId);
+                params.put("Content-Type", "application/json; charset=utf-8");
+
+                return params;
+            }
 
         };
 
@@ -435,5 +487,13 @@ public void Check_In() throws IOException {
         TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(color);
         snackbar.show();
+    }
+
+
+    private void POST_Check_ERROR() {
+        mBluetoothAdapter.stopLeScan(leScanCallback);
+        Log.d("Response","Not Found");
+        Snack_Bar("Failed Please Try Again");
+        // Toast.makeText(getActivity(),"IBEACON Not Fount",Toast.LENGTH_LONG).show();
     }
 }

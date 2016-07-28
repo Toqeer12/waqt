@@ -1,7 +1,6 @@
 package services;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
@@ -20,8 +19,7 @@ import java.util.Map;
 
 import DBHandle.DatabaseHandler;
 import connection.ConnectivityReceiver;
-import info.androidhive.materialdesign.activity.MainActivity;
-import info.androidhive.materialdesign.model.Contact;
+import info.androidhive.materialdesign.model.Addendance_DB_Model;
 
 /**
  * Created by Arrowtec on 7/16/2016.
@@ -67,14 +65,14 @@ public class BackgroundService extends Service {
                         Log.i(TAG, "Internet not found Server running");
                         Log.i(TAG, "Service running");
                         Log.d("Reading: ", "Reading all contacts..");
-            /*            List<Contact> contacts = db.getAllContacts();
+              List<Addendance_DB_Model> contacts = db.getAllContacts();
 
-                        for (Contact cn : contacts) {
-                            String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+                        for (Addendance_DB_Model cn : contacts) {
+                            String log = "Id: "+cn.get_id()+" ,Name: " + cn.get_CompId() + " ,Phone: " + cn.get_EmpId()+"Date"+ cn.get_DateTime()+"Ibeacon"+cn.get_IbeaconId();
                             // Writing Contacts to log
-                            Log.d("Name: ", log);
+                            Log.d("Reading: ", log);
 
-                        }*/
+                        }
                     }
                 }
 
@@ -102,18 +100,18 @@ public class BackgroundService extends Service {
         isRunning = false;
         Log.i(TAG, "Internet found Server running");
         Log.i(TAG, "Service onDestroy");
-        final List<Contact> contacts = db.getAllContacts();
+        final List<Addendance_DB_Model> contacts = db.getAllContacts();
 
-        for (final Contact cn : contacts) {
-            StringRequest postRequest = new StringRequest(Request.Method.POST, "http://192.168.1.140:8080/test2.php",
+        for (final Addendance_DB_Model cn : contacts) {
+            StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/CheckINOUT",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             // response
                             Log.d("Response", response);
                             Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-                            db.deleteContact(db.getContact(cn.getID()));
-                            Log.d("Response", "Record Delete "+ cn.getID());
+                            db.deleteContact(db.getContact(cn.get_id()));
+                            Log.d("Response", "Record Delete "+ cn.get_id());
 
                         }
                     },
@@ -130,13 +128,14 @@ public class BackgroundService extends Service {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
 
-                    String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+                    String log = "Id: " + cn.get_id() + " ,Name: " + cn.get_CompId() + " ,Phone: " + cn.get_EmpId();
                     // Writing Contacts to log
                     Log.d("Name: ", log);
-                    params.put(KEY_IBAECONID, cn.getName());
-                    params.put(KEY_MACADDRESS, cn.getPhoneNumber());
-
-
+                    params.put("CompId", cn.get_CompId());
+                    params.put("EmployeId", cn.get_EmpId());
+                    params.put("IbeaconId", cn.get_IbeaconId());
+                    params.put("DT", cn.get_DateTime());
+                    params.put("Content-Type", "application/json; charset=utf-8");
                     return params;
                 }
 
