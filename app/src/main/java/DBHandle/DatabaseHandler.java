@@ -39,7 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_COMP_ID + " TEXT,"+ KEY_EMP_ID + " TEXT,"+ KEY_IBEACON_ID + " TEXT,"
-				+ KEY_DATETIME + " TEXT"+KEY_Status + " TEXT" + ")";
+				+ KEY_DATETIME + " TEXT,"+KEY_Status + " TEXT" + ")";
 		db.execSQL(CREATE_CONTACTS_TABLE);
 	}
 
@@ -87,7 +87,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// return contact
 		return contact;
 	}
-	
+
 	// Getting All Contacts
 	public List<Addendance_DB_Model> getAllContacts() {
 		List<Addendance_DB_Model> contactList = new ArrayList<Addendance_DB_Model>();

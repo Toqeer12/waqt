@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import connection.ConnectivityReceiver;
+import gpstracker.GPSTracker;
 import info.androidhive.materialdesign.R;
 import info.androidhive.materialdesign.adapter.Attendance_Adapter;
 import info.androidhive.materialdesign.model.Attendence_history;
@@ -64,6 +65,7 @@ public class Attendence extends Fragment {
     String timeout_convt;
     String timein_convt;
     String tot_hour_convt;
+
     public Attendence() {
         // Required empty public constructor
     }
@@ -77,6 +79,7 @@ public class Attendence extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         attendence=new ArrayList<Attendence_history>();
         View rootView = inflater.inflate(R.layout.fragment_attendence, container, false);
         progressDialog = new ProgressDialog(getActivity());

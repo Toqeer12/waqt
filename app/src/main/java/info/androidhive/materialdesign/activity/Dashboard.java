@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +42,7 @@ import java.util.Map;
 
 import DBHandle.DatabaseHandler;
 import connection.ConnectivityReceiver;
+import gpstracker.GPSTracker;
 import info.androidhive.materialdesign.R;
 import info.androidhive.materialdesign.model.Addendance_DB_Model;
 import services.BackgroundService;
@@ -68,6 +70,7 @@ public class Dashboard extends Fragment {
     Fragment fragment = null;
     String title;
     String status;
+    GPSTracker gps;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -82,6 +85,7 @@ public class Dashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          title = getString(R.string.app_name);
+        gps = new GPSTracker(getActivity());
         //reference to the bluetooth adapter
         beaconManager = new BeaconManager(getActivity());
         db=new DatabaseHandler(getActivity());
@@ -98,7 +102,19 @@ public class Dashboard extends Fragment {
 //
 //        checkout.setVisibility(View.INVISIBLE);
 //        checkin.setVisibility(View.INVISIBLE);
+        if(gps.canGetLocation()){
 
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+
+            // \n is for new line
+            Toast.makeText(getActivity(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        }else{
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
         attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

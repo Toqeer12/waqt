@@ -227,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                                         for (int i = 0; i < jsoArray.length(); i++) {
                                             JSONObject person = (JSONObject) jsoArray
                                                     .get(i);
-                                            String name = person.getString("NameEn");
+                                            String name = person.getString("ResponseMessage");
                                             if(name.equalsIgnoreCase("0"))
                                             {
                                                 Log.d("Response", response.toString());
@@ -265,8 +265,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put(KEY_MACADDRESS,"02:00:00:00:00:00");
-                params.put(KEY_PASSWORD,"zuvate@yahoo.com");
+                params.put(KEY_MACADDRESS,macAddress);
+                params.put(KEY_PASSWORD,password);
                 params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;
