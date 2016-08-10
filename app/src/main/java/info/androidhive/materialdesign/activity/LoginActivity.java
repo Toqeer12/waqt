@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     public static final String pass = "emailKey";
     public static final String emi = "nameKey";
     private ArrayList<login_model_user> ibeacon;
-    public static final String KEY_PASSWORD = "Password";
-    public static final String KEY_MACADDRESS = "MAC";
+    public static final String KEY_PASSWORD = "PinCode";
+    public static final String KEY_MACADDRESS = "MACAddress";
     TelephonyManager telephonyManager;
     @Bind(R.id.input_password)
     EditText _passwordText;
@@ -214,7 +214,8 @@ public class LoginActivity extends AppCompatActivity {
 
             String url ="http://schoolhrms.mydreamapps.com/api/testapi/get?password="+password+"&mac"+macaddress;
             Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/PostLogin",
+        Log.d("Response", macaddress);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.mydreamapps.com/API/ApiLogin/CheckLoginDetails",
                             new Response.Listener<String>()
                             {
                                 @Override
@@ -227,12 +228,12 @@ public class LoginActivity extends AppCompatActivity {
                                         for (int i = 0; i < jsoArray.length(); i++) {
                                             JSONObject person = (JSONObject) jsoArray
                                                     .get(i);
-                                            String name = person.getString("ResponseMessage");
+                                            String name = person.getString("ResponseStatusCode");
                                             if(name.equalsIgnoreCase("0"))
                                             {
                                                 Log.d("Response", response.toString());
 
-                                                Snack_Bar("Record Not Found");
+                                                Snack_Bar("Wrong Password");
                                                 _loginButton.setEnabled(true);
                                             }
                                             else

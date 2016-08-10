@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         JSONObject person = (JSONObject) jsoArray
                                 .get(i);
                         name = person.getString("NameEn");
-                        comp_logo = person.getString("Company_image");
-                        profile=person.getString("Emp_image");
-                        EmployeeId = person.getString("EmployeeId");
-                        comp_id=person.getString("Company_id");
+                        comp_logo = person.getString("CompanyImagePath");
+                        profile=person.getString("ImagePath");
+                        EmployeeId = person.getString("EmployeeID");
+                        comp_id=person.getString("CompanyID");
 
                         Glide.with(getApplicationContext())
                                 .load(comp_logo.replace("https", "http"))
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                                 .fitCenter()
                                 .into(img);
                         Log.d("Response", name);
-                        txt.setText(person.getString("NameEn"));
+                        txt.setText(person.getString("CompanyNameEn"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

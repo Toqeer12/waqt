@@ -112,33 +112,33 @@ public class Profile extends Fragment {
                 JSONObject person = (JSONObject) jsoArray
                         .get(i);
 
-                String emailemp = person.getString("EmailId");
+                String emailemp = person.getString("EmailID");
                 String name =person.getString("NameEn");
-                String othde =person.getString("OtherDetail");
+                String othde =person.getString("OtherDetails");
                 String DOB =person.getString("DOB");
                 String maritalstatus=person.getString("MaritalStatus");
                 String highestqual=person.getString("HighestQualification");
                 String dlnumber=person.getString("DLNumber");
                 String dlexpiry=person.getString("DLExpiry");
                 String designation=person.getString("DesignationName");
-                String departmentName=person.getString("DepartmentID");
-                String countryemp=person.getString("CountryID");
-                String companyId=person.getString("ComapnyID");
+                String departmentName=person.getString("DepartmentNameEn");
+                String countryemp=person.getString("CountryNameEn");
+                String companyId=person.getString("CompanyNameEn");
                 String ssnemp=person.getString("SSN");
                 String sinemp=person.getString("SIN");
                 String gend=person.getString("Gender");
                 String miltryserv=person.getString("MilitaryService");
-                String levlemp=person.getString("LevelID");
+//                String levlemp=person.getString("LevelID");
                 String employecode=person.getString("EmployeeCode");
                 String joinDate=person.getString("JoiningDate");
                 String employeTyp=person.getString("EmployeeType");
-                String gradId=person.getString("GradeId");
-                String shfitId=person.getString("EmployeeShiftID");
-                String workhour=person.getString("WorkingHours");
+//                String gradId=person.getString("GradeId");
+//                String shfitId=person.getString("EmployeeShiftID");
+//                String workhour=person.getString("WorkingHours");
                 String shfitstart=person.getString("ShiftStart");
                 String shiftend=person.getString("ShiftEnd");
                 String gradval=person.getString("GradeValue");
-                String otherde=person.getString("OtherDetail");
+
 
                 nick_name.setText(name);
                 dob.setText(DOB);
@@ -156,16 +156,16 @@ public class Profile extends Fragment {
                 ssn.setText(ssnemp);
                 sin.setText(sinemp);
                 milserv.setText(miltryserv);
-                grd.setText(gradId);
+//                grd.setText(gradId);
                 sfstart.setText(shfitstart);
                 sfend.setText(shiftend);
                 jdate.setText(joinDate);
-                levl.setText(levlemp);
+//                levl.setText(levlemp);
                 emptyp.setText(employeTyp);
                 gdval.setText(gradval);
-                whour.setText(workhour);
-                shift.setText(shfitId);
-                otherdetail.setText(otherde);
+//                whour.setText(workhour);
+//                shift.setText(shfitId);
+
 
 
 

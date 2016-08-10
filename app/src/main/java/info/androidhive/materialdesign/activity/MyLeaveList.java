@@ -149,68 +149,73 @@ public class MyLeaveList extends Fragment {
     {
         String json_array = sharedpreferences.getString("LeaveHistoryJsonArray", null);
         Log.d("Response",""+json_array);
-        if (json_array==null) {
 
-            Snack_Bar("Record Not Found");
-            progressDialog.dismiss();
-        }
-        else
-        {
+
+
+
+
             try {
-
-
-
                 JSONArray jsoArray = new JSONArray(json_array);
                 for (int i = 0; i < jsoArray.length(); i++) {
                     JSONObject person = (JSONObject) jsoArray
                             .get(i);
-                    LeaveTitle = person.getString("TitleEn");
-                    ApplyDate = person.getString("ApplyDate");
-                    Status = person.getString("LeaveStatus");
-                    fromLeave=person.getString("fromLeave");
-                    toLeave=person.getString("toLeave");
-                    reason=person.getString("reason");
-                    TermStart=person.getString("TermStart");
-                    TermEnd=person.getString("TermEnd");
-                    Qunatity=person.getString("Qunatity");
-                    ProcessDate=person.getString("ProcessDate");
-                    UnitType=person.getString("UnitType");
-                    ConcurrencyType=person.getString("ConcurrencyType");
-                    isPaid=person.getString("isPaid");
-                    Applydate = ApplyDate.split("T");
+                    String statusCode=person.getString("ResponseStatusCode");
 
-                    inputFormat2 = new SimpleDateFormat("HH:mm:ss");
-                    outputFormat2 = new SimpleDateFormat("KK:mm a");
+                    if (statusCode.equalsIgnoreCase("0")) {
 
+                        Snack_Bar("Record Not Found");
+                        progressDialog.hide();                    }
+                    else
+                    {
+                        LeaveTitle = person.getString("TitleEn");
+                        ApplyDate = person.getString("ApplyDate");
+                        Status = person.getString("LeaveStatus");
+                        fromLeave=person.getString("fromLeave");
+                        toLeave=person.getString("toLeave");
+                        reason=person.getString("reason");
+                        TermStart=person.getString("TermStart");
+                        TermEnd=person.getString("TermEnd");
+                        Qunatity=person.getString("Qunatity");
+                        ProcessDate=person.getString("ProcessDate");
+                        UnitType=person.getString("UnitType");
+                        ConcurrencyType=person.getString("ConcurrencyType");
+                        isPaid=person.getString("isPaid");
+                        Applydate = ApplyDate.split("T");
 
-                    Log.d("ResponseAdapter", Applydate[0]);
-                    try {
-                        timeApplyDate_convt = outputFormat2.format(inputFormat2.parse(Applydate[1].substring(0, 8)));
-
-
-
-
-
+                        inputFormat2 = new SimpleDateFormat("HH:mm:ss");
+                        outputFormat2 = new SimpleDateFormat("KK:mm a");
 
 
-                    } catch (Exception ex) {
+                        Log.d("ResponseAdapter", Applydate[0]);
+                        try {
+                            timeApplyDate_convt = outputFormat2.format(inputFormat2.parse(Applydate[1].substring(0, 8)));
 
+
+
+
+
+
+
+                        } catch (Exception ex) {
+
+                        }
                     }
-                   // leaveobject.add(new Leave_Model(Applydate[0],timeApplyDate_convt,Status,LeaveTitle));
+
+
+                    // leaveobject.add(new Leave_Model(Applydate[0],timeApplyDate_convt,Status,LeaveTitle));
                     leaveobject.add(new Leave_Model(fromLeave, toLeave, Qunatity,  reason,  timeApplyDate_convt, isPaid, Status,  Applydate[0],  TermStart,  TermEnd,  ProcessDate,  LeaveTitle,  ConcurrencyType,  UnitType));
 
                     adapter = new LeaveDataAdapter(getActivity(), leaveobject);
                     recyclerView.setAdapter(adapter);
 
-
                     Log.d("Response", LeaveTitle);
                 }
-                //
+                 progressDialog.dismiss();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-        }
+
     }
 
     private void LeaveHistory(final String Id){
@@ -218,7 +223,7 @@ public class MyLeaveList extends Fragment {
 
         String url ="http://schoolhrms.mydreamapps.com/api/testapi/GetLeaveHistory?id=23";
         Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/PostGetLeaveHistory",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.mydreamapps.com/API/ApiLeaves/LeaveHistory",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -229,20 +234,19 @@ public class MyLeaveList extends Fragment {
                             Log.d("Response", response.toString());
                             JSONArray jsoArray = new JSONArray(response);
                             Log.d("Response",""+jsoArray.length());
-                            if(jsoArray.length()==0)
-                            {
-                                Log.d("Response", response.toString());
 
-                                Snack_Bar("Record Not Found");
-                                progressDialog.hide();
-
-                            }
-                            else
-                            {
                                 for (int i = 0; i < jsoArray.length(); i++) {
                                     JSONObject person = (JSONObject) jsoArray
                                             .get(i);
+                                    String statusCode=person.getString("ResponseStatusCode");
 
+                                    if (statusCode.equalsIgnoreCase("0")) {
+                                        Snack_Bar("Record Not Found");
+                                        progressDialog.hide();
+
+                                    }
+                                    else
+                                    {
                                     editor.remove("LeaveHistoryJsonArray");
                                     editor.putString("LeaveHistoryJsonArray", response.toString());
                                     editor.commit();
@@ -292,6 +296,8 @@ public class MyLeaveList extends Fragment {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d("ResponseAdapter", "error");
+                            progressDialog.dismiss();
                         }
 
 
@@ -310,7 +316,7 @@ public class MyLeaveList extends Fragment {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("id",MainActivity.EmployeeId);
+                params.put("EmployeeID",MainActivity.EmployeeId);
                 params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;

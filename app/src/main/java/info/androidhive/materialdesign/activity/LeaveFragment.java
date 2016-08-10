@@ -23,7 +23,7 @@ import info.androidhive.materialdesign.R;
  * Created by Ravi on 29/07/15.
  */
 public class LeaveFragment extends Fragment implements View.OnClickListener {
-    private String[] state = { "Cupcake", "Donut", "Eclair", "Froyo",
+    private String[] state = { "Annual Leave", "Donut", "Eclair", "Froyo",
             "Gingerbread", "HoneyComb", "IceCream Sandwich", "Jellybean",
             "kitkat" };
     private EditText fromDateEtxt;

@@ -34,6 +34,10 @@ import com.android.volley.toolbox.Volley;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
@@ -71,6 +75,8 @@ public class Dashboard extends Fragment {
     String title;
     String status;
     GPSTracker gps;
+    double longitude;
+    double latitude; String latit; String longi;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -102,13 +108,15 @@ public class Dashboard extends Fragment {
 //
 //        checkout.setVisibility(View.INVISIBLE);
 //        checkin.setVisibility(View.INVISIBLE);
+        checkout.setEnabled(false);
         if(gps.canGetLocation()){
 
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
-
+              latitude = gps.getLatitude();
+              longitude = gps.getLongitude();
+              latit = String.valueOf(latitude);
+              longi = String.valueOf(longitude);
             // \n is for new line
-            Toast.makeText(getActivity(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
         }else{
             // can't get location
             // GPS or Network is not enabled
@@ -151,7 +159,7 @@ public class Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    Check_In("check_in");
+                    Check_In("Checkin");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -161,7 +169,7 @@ public class Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    Check_out("check_out");
+                    Check_out("Checkout");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -310,7 +318,7 @@ public void Check_In(String check_in) throws IOException {
                     mediaPlayer.start();
                     currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                     Log.d("Response Data", currentDateTimeString);
-                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, ibeaconId,status));
+                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, ibeaconId,status,latit,longi));
 
                     Intent intent = new Intent(getActivity(), BackgroundService.class);
                     getActivity().startService(intent);
@@ -333,7 +341,7 @@ public void Check_In(String check_in) throws IOException {
                     mediaPlayer.start();
                     currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                     Log.d("Response Data2", currentDateTimeString);
-                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, "Not",status));
+                    db.addContact(new Addendance_DB_Model(MainActivity.EmployeeId, MainActivity.comp_id, currentDateTimeString, "0",status,latit,longi));
 
                     Intent intent = new Intent(getActivity(), BackgroundService.class);
                     getActivity().startService(intent);
@@ -365,9 +373,14 @@ public void Check_In(String check_in) throws IOException {
     private void Post_Check_in_out (final String ibeacon, final String datatime){
         mBluetoothAdapter.stopLeScan(leScanCallback);
         Log.d("Response", ibeacon);
+        String json_array = sharedpreferences.getString("jsonArray", null);
+
+
+        JSONArray jsoArray= null;
+
 
         Log.d("Response", MainActivity.emii);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/CheckINOUT",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.mydreamapps.com/API/ApiAttendances/EmployeeAttendance",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -375,7 +388,8 @@ public void Check_In(String check_in) throws IOException {
                         // response
                         Log.d("Response", response);
                         Snack_Bar("Checked Successfully");
-                        mediaPlayer.start();
+
+                                mediaPlayer.start();
 
 
                     }
@@ -392,12 +406,15 @@ public void Check_In(String check_in) throws IOException {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("EmployeId",MainActivity.EmployeeId);
-                params.put("DT",datatime);
-                params.put("CompId",MainActivity.comp_id);
-                params.put("IbeaconId",ibeacon);
-                params.put("status",status);
-                params.put("Content-Type", "application/json; charset=utf-8");
+                params.put("EmployeeID",MainActivity.EmployeeId);
+                params.put("CheckInOutTime",datatime);
+                params.put("CompanyID",MainActivity.comp_id);
+                params.put("EstimoteUUID",ibeacon);
+                params.put("Status",status);
+                params.put("Latitude",latit);
+                params.put("Longitude",longi);
+//                params.put("Content-Type", "application/json; charset=utf-8");
+                Log.d("Response",""+params);
 
                 return params;
             }
@@ -456,7 +473,7 @@ public void Check_In(String check_in) throws IOException {
         mBluetoothAdapter.stopLeScan(leScanCallback);
 
         Log.d("Response", MainActivity.emii);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/CheckINOUT",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.mydreamapps.com/API/ApiAttendances/EmployeeAttendance",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -484,13 +501,15 @@ public void Check_In(String check_in) throws IOException {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("EmployeId",MainActivity.EmployeeId);
-                params.put("DT",currentdate);
-                params.put("CompId",MainActivity.comp_id);
-                params.put("IbeaconId",ibeaconId);
-                params.put("status",status);
-                params.put("Content-Type", "application/json; charset=utf-8");
-
+                params.put("EmployeeID",MainActivity.EmployeeId);
+                params.put("CheckInOutTime",currentdate);
+                params.put("CompanyID",MainActivity.comp_id);
+                params.put("EstimoteUUID",ibeaconId);
+                params.put("Status",status);
+                params.put("Latitude",latit);
+                params.put("Longitude",longi);
+//                params.put("Content-Type", "application/json; charset=utf-8");
+                Log.d("Response",""+params);
                 return params;
             }
 

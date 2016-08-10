@@ -19,6 +19,7 @@ import java.util.Map;
 
 import DBHandle.DatabaseHandler;
 import connection.ConnectivityReceiver;
+import info.androidhive.materialdesign.activity.MainActivity;
 import info.androidhive.materialdesign.model.Addendance_DB_Model;
 
 /**
@@ -103,7 +104,7 @@ public class BackgroundService extends Service {
         final List<Addendance_DB_Model> contacts = db.getAllContacts();
 
         for (final Addendance_DB_Model cn : contacts) {
-            StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/CheckINOUT",
+            StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.mydreamapps.com/API/ApiAttendances/EmployeeAttendance",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -131,12 +132,15 @@ public class BackgroundService extends Service {
                     String log = "Id: " + cn.get_id() + " ,Name: " + cn.get_CompId() + " ,Phone: " + cn.get_EmpId();
                     // Writing Contacts to log
                     Log.d("Name: ", log);
-                    params.put("CompId", cn.get_CompId());
-                    params.put("EmployeId", cn.get_EmpId());
-                    params.put("IbeaconId", cn.get_IbeaconId());
-                    params.put("DT", cn.get_DateTime());
-                    params.put("status",cn.getStatus());
-                    params.put("Content-Type", "application/json; charset=utf-8");
+                    params.put("EmployeeID", cn.get_EmpId());
+                    params.put("CheckInOutTime",cn.get_DateTime());
+                    params.put("CompanyID",cn.get_CompId());
+                    params.put("EstimoteUUID",cn.get_IbeaconId());
+                    params.put("Status",cn.getStatus());
+                    params.put("Latitude",cn.getLatit());
+                    params.put("Longitude",cn.getLogni());
+
+//                    params.put("Content-Type", "application/json; charset=utf-8");
                     return params;
                 }
 

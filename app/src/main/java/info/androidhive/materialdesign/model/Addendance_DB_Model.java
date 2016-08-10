@@ -17,20 +17,41 @@ public class Addendance_DB_Model {
 	String _DateTime;
 	String _IbeaconId;
 	String status;
+	String latit;
+	String logni;
 
 	// Empty constructor
-	public Addendance_DB_Model( String _EmpId, String _CompId, String _DateTime, String _IbeaconId,String status) {
+	public Addendance_DB_Model( String _EmpId, String _CompId, String _DateTime, String _IbeaconId,String status,String latit,String logni) {
 		this._EmpId = _EmpId;
 		this._CompId = _CompId;
 		this._DateTime = _DateTime;
 		this._IbeaconId = _IbeaconId;
 		this.status=status;
+		this.latit=latit;
+		this.logni=logni;
  	}
 
 	public Addendance_DB_Model() {
 
 	}
 	// constructor
+
+
+	public String getLatit() {
+		return latit;
+	}
+
+	public void setLatit(String latit) {
+		this.latit = latit;
+	}
+
+	public String getLogni() {
+		return logni;
+	}
+
+	public void setLogni(String logni) {
+		this.logni = logni;
+	}
 
 	public int get_id() {
 		return _id;
@@ -80,12 +101,14 @@ public class Addendance_DB_Model {
 		this._CompId = _CompId;
 	}
 
-	public Addendance_DB_Model(int id,String _EmpId, String _CompId, String _DateTime, String _IbeaconId,String status) {
+	public Addendance_DB_Model(int id,String _EmpId, String _CompId, String _DateTime, String _IbeaconId,String status,String latit,String logni) {
 		this._EmpId = _EmpId;
 		this._CompId = _CompId;
 		this._DateTime = _DateTime;
 		this._IbeaconId = _IbeaconId;
 		this._id=id;
 		this.status=status;
+		this.latit=latit;
+		this.logni=logni;
 	}
 }

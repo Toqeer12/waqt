@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -194,9 +195,9 @@ public void OFFLINE_ATTENDACE()
     private void AttendanceHistory(final String Id){
 
 
-        String url ="http://schoolhrms.mydreamapps.com/api/testapi/get?password="+Id;
+        String url ="http://waqt.mydreamapps.com/API/ApiAttendances/AttendaceHistory=";
         Log.d("URL",url);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://schoolhrms.mydreamapps.com/api/testapi/PostAttendanceHistory",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.mydreamapps.com/API/ApiAttendances/AttendaceHistory",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -225,24 +226,20 @@ public void OFFLINE_ATTENDACE()
                                 editor.putString("AttendanceJsonArray", response.toString());
                                 editor.commit();
 
-                                check_in = person.getString("check_in");
-                                check_out = person.getString("check_out");
-                                total_work_hour = person.getString("total_hour");
-                                EmployeeId = person.getString("employee_id");
+                                check_in = person.getString("CheckinTime");
+                                check_out = person.getString("CheckoutTime");
+                                total_work_hour = person.getString("TotalHours");
+                                String statusCode=person.getString("ResponseStatusCode");
 
-
-                                if (total_work_hour.isEmpty()) {
+                                if (statusCode.equalsIgnoreCase("0")) {
                                     Log.d("ResponseAdapterTotal", total_work_hour);
-                                        checkin_output[0] ="-";
-                                        checkout_output[0]="-";
-                                        timein_convt="-";
-                                    timeout_convt="-";
-                                    tot_hour_convt="-";
+                                    Snack_Bar("Record Not Found");
+                                    progressDialog.hide();
 
                                 } else {
                                 checkin_output = check_in.split("T");
                                 checkout_output = check_out.split("T");
-                                inputFormat2 = new SimpleDateFormat("HH:mm:ss");
+                                inputFormat2 =      new SimpleDateFormat("HH:mm:ss");
                                 outputFormat2 = new SimpleDateFormat("KK:mm a");
 
 
@@ -291,7 +288,7 @@ public void OFFLINE_ATTENDACE()
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("id",MainActivity.EmployeeId);
+                params.put("EmployeeID",MainActivity.EmployeeId);
                 params.put("Content-Type", "application/json; charset=utf-8");
 
                 return params;
