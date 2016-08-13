@@ -11,6 +11,7 @@
     <string name="nav_item_attendence">My Attendence</string>
     <string name="nav_item_leavelist">My Leave List</string>
     <string name="from_date">From Date</string>
+    <string name="currentdate">Date</string>
     <string name="to_date">To Date</string>
     <string name="comment">Comment</string>
     <!-- navigation drawer item labels  -->

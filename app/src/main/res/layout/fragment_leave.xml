@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/layout"
     tools:context=".activity.LeaveFragment">
 
 
@@ -29,16 +30,6 @@
         android:layout_below="@+id/label"
         >
 
-        <TextView
-            android:id="@+id/label2"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textSize="20dp"
-            android:text="Leave Type"
-            android:textStyle="bold"/>
         <Spinner
             android:id="@+id/osversions"
             android:layout_width="match_parent"
@@ -46,73 +37,70 @@
             android:layout_marginTop="10dp"
              />
 
-        <TextView
-            android:id="@+id/leavebalc"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
+        <EditText
+            android:id="@+id/leavlblac"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textSize="20dp"
-            android:text="Leave Balance"
-            android:textStyle="bold"/>
-        <TextView
-        android:id="@+id/frmdate"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:textSize="20dp"
-        android:text="From Date *"
-        android:textStyle="bold"/>
+            android:drawableLeft="@drawable/balance"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:hint="Balance" />
+
+
+
+        <EditText
+            android:id="@+id/editdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/current_day"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:hint="@string/currentdate" />
 
         <EditText
             android:id="@+id/etxt_fromdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/from_date"
+
             android:maxLines="1"
             android:hint="@string/from_date" />
-
-
-        <TextView
-            android:id="@+id/todate"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textSize="20dp"
-            android:text="To Date *"
-            android:maxLines="1"
-            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/etxt_todate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/to_date"
             android:hint="@string/to_date" />
 
-
-        <TextView
-            android:id="@+id/comment"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
+        <EditText
+            android:id="@+id/numdays"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textSize="20dp"
-            android:text="Comment"
-            android:maxLines="1"
-            android:textStyle="bold"/>
+            android:drawableLeft="@drawable/number_of_days"
+            android:layout_marginTop="10dp"
+            android:hint="Number of Days" />
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paid Leave"
+            android:checked="false"
+            android:layout_above="@+id/checkBox1"
+            android:layout_alignLeft="@+id/checkBox1"
+            android:layout_alignStart="@+id/checkBox1" />
+
+
 
         <EditText
             android:id="@+id/editcomment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/reason"
+
             android:hint="@string/comment" />
         <LinearLayout
             android:layout_width="wrap_content"
