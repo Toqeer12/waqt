@@ -15,9 +15,19 @@ public class Apply_Leave
 
 {
     public String LeaveType;
+    public String LeaveTypeId;
 
-    public Apply_Leave(String leaveType) {
-        LeaveType = leaveType;
+    public String getLeaveTypeId() {
+        return LeaveTypeId;
+    }
+
+    public void setLeaveTypeId(String leaveTypeId) {
+        LeaveTypeId = leaveTypeId;
+    }
+
+    public Apply_Leave(String leaveType,String LeaveTypeId) {
+        this.LeaveType = leaveType;
+        this.LeaveTypeId=LeaveTypeId;
     }
 
     public String getLeaveType() {

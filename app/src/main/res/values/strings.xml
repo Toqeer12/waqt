@@ -13,7 +13,7 @@
     <string name="from_date">From Date</string>
     <string name="currentdate">Date</string>
     <string name="to_date">To Date</string>
-    <string name="comment">Comment</string>
+    <string name="comment">Reason</string>
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
