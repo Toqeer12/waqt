@@ -269,7 +269,7 @@ public class LoginActivity extends AppCompatActivity {
                 params.put(KEY_MACADDRESS,macAddress);
                 params.put(KEY_PASSWORD,password);
                 params.put("Content-Type", "application/json; charset=utf-8");
-
+                Log.d("Response",params.toString());
                 return params;
             }
 

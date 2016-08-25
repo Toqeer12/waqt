@@ -33,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
+import com.felipecsl.gifimageview.library.GifImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,6 +78,7 @@ public class Dashboard extends Fragment {
     GPSTracker gps;
     double longitude;
     double latitude; String latit; String longi;
+    GifImageView gifView;
     public Dashboard() {
         // Required empty public constructor
     }
@@ -104,10 +106,7 @@ public class Dashboard extends Fragment {
         checkout=(Button)rootView.findViewById(R.id.checkout);
         attendance=(Button) rootView.findViewById(R.id.myattendance);
         leave=(Button)rootView.findViewById(R.id.myleave);
-//
-//
-//        checkout.setVisibility(View.INVISIBLE);
-//        checkin.setVisibility(View.INVISIBLE);
+
         checkout.setEnabled(false);
         if(gps.canGetLocation()){
 
@@ -116,8 +115,7 @@ public class Dashboard extends Fragment {
               latit = String.valueOf(latitude);
               longi = String.valueOf(longitude);
             // \n is for new line
-//            Toast.makeText(getActivity(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        }else{
+         }else{
             // can't get location
             // GPS or Network is not enabled
             // Ask user to enable GPS/network in settings
@@ -160,6 +158,7 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 try {
                     Check_In("Checkin");
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -224,8 +223,6 @@ public void Check_In(String check_in) throws IOException {
             if (isScanning)
             {
                 if (mBluetoothAdapter != null)
-
-
                 {
                     mBluetoothAdapter.stopLeScan(leScanCallback);
 
@@ -388,8 +385,15 @@ public void Check_In(String check_in) throws IOException {
                         // response
                         Log.d("Response", response);
                         Snack_Bar("Checked Successfully");
+                        if(response.equalsIgnoreCase("1"))
+                        {
+                            mediaPlayer.start();
+                        }
+                        else
+                        {
 
-                                mediaPlayer.start();
+                        }
+
 
 
                     }

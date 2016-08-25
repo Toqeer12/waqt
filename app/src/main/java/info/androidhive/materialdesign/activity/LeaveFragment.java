@@ -31,14 +31,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -68,7 +71,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
     String shortDayTotal;
     String LongMonthTotal;
     String hajjOnce;
-    String AnnualMonth;
+    String AnnualMonth,leave_id;
     String item;
     Button submit,canncel;
     Fragment fragment = null;
@@ -191,7 +194,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
     @Override
     public void onClick(View v) {
 
-        String shortleave,fromdate,todate,numboerofdays,reasonleave;
+        String shortleave,fromdate,todate,numboerofdays,reasonleave,unitype;
         if(v == fromDateEtxt) {
             fromDatePickerDialog.show();
         } else if(v == toDateEtxt) {
@@ -205,16 +208,17 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
         {
 
 
-            Toast.makeText(getActivity(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
+            progressDialog.setMessage("Applying Leave");
+            progressDialog.show();
             if(item.equalsIgnoreCase("Short"))
             {
+                unitype=unitType.getText().toString();
                 shortleave=shortdate.getText().toString();
-                fromdate=null;
-                todate=null;
+                fromdate=shortdate.getText().toString();
+                todate=shortdate.getText().toString();
                 numboerofdays=NumOFdays.getText().toString();
                 reasonleave=reason.getText().toString();
-                 Log.d("Response",shortdate.getText().toString());
+                Log.d("Response",shortdate.getText().toString());
                 Log.d("Response",NumOFdays.getText().toString());
                 Log.d("Response",reason.getText().toString());
 
@@ -228,11 +232,12 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
                     leavepaidtype="false";
                     Log.d("Response",""+leavepaidtype);
                 }
-                PostLeave(shortleave,fromdate,todate,numboerofdays,reasonleave,leavepaidtype,item);
+                PostLeave(unitype,shortleave,fromdate,todate,numboerofdays,reasonleave,leavepaidtype,item);
             }
             else
             {
                 shortleave=null;
+                unitype=unitType.getText().toString();
                 fromdate=fromDateEtxt.getText().toString();
                 todate=toDateEtxt.getText().toString();
                 numboerofdays=NumOFdays.getText().toString();
@@ -251,7 +256,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
                     leavepaidtype="false";
                     Log.d("Response",""+leavepaidtype);
                 }
-                PostLeave(shortleave,fromdate,todate,numboerofdays,reasonleave,leavepaidtype,item);
+                PostLeave(unitype,shortleave,fromdate,todate,numboerofdays,reasonleave,leavepaidtype,item);
             }
 
 
@@ -281,7 +286,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
 
 
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.ae//API/ApiLeaves/AddEmployeeLeave",
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.ae/API/ApiLeaves/ListLeaveType",
                 new Response.Listener<String>()
                 {
                     @Override
@@ -305,6 +310,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
                                 else
                                 {
                                     String title_en=person.getString("TitleEn");
+                                    leave_id=person.getString("LeaveTypeID");
                                     leave_model.add(new Apply_Leave(title_en,person.getString("LeaveTypeID")));
                                 }
                                 CustomAdapter customAdapter=new CustomAdapter(getActivity(),leave_model);
@@ -374,17 +380,70 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
         snackbar.show();
     }
 
-    public void PostLeave(final String shortleave, final String fromdate, final String todate, final String numboerofdays, final String reasonleave, final String leavepaidtype, final String item)
+    public void PostLeave(final String unitype,final String shortleave, final String fromdate, final String todate, final String numboerofdays, final String reasonleave, final String leavepaidtype, final String item)
     {
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.ae/API/ApiLeaves/ApplyLeave",
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => " + c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        final String formattedDate = df.format(c.getTime());
+
+//        final JSONObject params = new JSONObject();
+//        try {
+//            params.put("LeaveTypeID",leave_id);
+//            params.put("LeaveStatus","InProcess");
+//            params.put("ApplyDate",parseDateToddMMyyyy(formattedDate));
+//            params.put("FromDate",parseDateToddMMyyyy(fromdate));
+//            params.put("ToDate",parseDateToddMMyyyy(todate));
+//            params.put("UnitType",unitype);
+//            params.put("Reason",reasonleave);
+//            params.put("IsPaid",leavepaidtype);
+//            params.put("EmployeeID",MainActivity.EmployeeId);
+//            params.put("ReplacementEmployeeID","0");
+//            params.put("Quantity",numboerofdays);
+//
+//        } catch (JSONException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.ae/API/ApiLeaves/AddEmployeeLeave\n",
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response) {
                         // response
 
+                        Log.d("Response",response);
+                        try {
+                            JSONArray jsoArray = new JSONArray(response);
 
 
+                            if(jsoArray.length()==0)
+                            {
+                                Log.d("Response", response.toString());
+
+                                Snack_Bar("Record Not Found");
+                                progressDialog.hide();
+
+                            }
+                            else {
+                                for (int i = 0; i < jsoArray.length(); i++) {
+                                    JSONObject person = (JSONObject) jsoArray
+                                            .get(i);
+                                    Snack_Bar(person.getString("ResponseMessage").toString());
+                                    progressDialog.hide();
+                                    reason.getText().clear();
+                                    shortdate.getText().clear();
+                                    NumOFdays.getText().clear();
+
+
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
                     }
@@ -399,14 +458,17 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("LEAVETYPE",item);
-                params.put("CURRENTDATE",shortleave);
-                params.put("FROMDATE",fromdate);
-                params.put("TODATE",todate);
-                params.put("NUMBERDAYS",numboerofdays);
-                params.put("REASON",reasonleave);
-                params.put("ISPAID",leavepaidtype);
+                params.put("LeaveTypeID",leave_id);
+                params.put("LeaveStatus","InProcess");
+                params.put("ApplyDate",parseDateToddMMyyyy(formattedDate));
+                params.put("FromDate",parseDateToddMMyyyy(fromdate));
+                params.put("ToDate",parseDateToddMMyyyy(todate));
+                params.put("UnitType",unitype);
+                params.put("Reason",reasonleave);
+                params.put("IsPaid",leavepaidtype);
                 params.put("EmployeeID",MainActivity.EmployeeId);
+                params.put("ReplacementEmployeeID","0");
+                params.put("Quantity",numboerofdays);
                 params.put("Content-Type", "application/json; charset=utf-8");
                 Log.d("Response",params.toString());
                 return params;
@@ -420,11 +482,6 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
 
 
     private void GetLeaveStatus(final String leaveTypeId){
-
-
-
-
-
         StringRequest postRequest = new StringRequest(Request.Method.POST, "http://waqt.ae//API/ApiLeaves/LeaveTypeView",
                 new Response.Listener<String>()
                 {
@@ -542,5 +599,22 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(postRequest);
+    }
+    public String parseDateToddMMyyyy(String time) {
+        String inputPattern = "dd-MM-yyyy";
+        String outputPattern = "MM/dd/yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
 }

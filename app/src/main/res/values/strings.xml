@@ -4,7 +4,7 @@
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
+    <string name="attendance_history">Attendence History</string>
     <string name="nav_item_home">Dashboard</string>
     <string name="nav_item_friends">Profile</string>
     <string name="nav_item_notifications">Apply Leave</string>
@@ -15,6 +15,10 @@
     <string name="to_date">To Date</string>
     <string name="comment">Reason</string>
     <!-- navigation drawer item labels  -->
+
+    <string name="check_out">Check Out</string>
+    <string name="check_in">Check In</string>
+
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>

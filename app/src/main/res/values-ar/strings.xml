@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">خلال نظام الحضور</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="attendance_history">سجل الحضور</string>
+    <string name="nav_item_home">لوحة القيادة</string>
+    <string name="nav_item_friends">الملف الشخصي</string>
+    <string name="nav_item_notifications">Apply Leave</string>
+    <string name="nav_item_attendence">حضوري</string>
+    <string name="nav_item_leavelist">بلدي اترك قائمة</string>
+    <string name="from_date">من التاريخ</string>
+    <string name="currentdate">تاريخ</string>
+    <string name="to_date">ان يذهب في موعد</string>
+    <string name="comment">Reason</string>
+
+
+    <string name="check_out">الدفع</string>
+    <string name="check_in">تحقق في</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+        <item>@string/nav_item_attendence</item>
+        <item>@string/nav_item_leavelist</item>
+    </string-array>
+    <integer-array name="nav_drawer_image">
+        <item>@drawable/waqt_dash</item>
+        <item>@drawable/waqt_profile </item>
+        <item>@drawable/waqt_applyleav</item>
+        <item>@drawable/waqt_attendence</item>
+        <item>@drawable/waqt_myleavelist </item>
+
+    </integer-array>
+    <string name="title_leave">تطبيق إجازة</string>
+    <string name="title_profile">الملف الشخصي</string>
+    <string name="title_home">لوحة القيادة</string>
+    <string name="title_attendence">الحضور</string>
+    <string name="title_leavelist">يترك</string>
+</resources>

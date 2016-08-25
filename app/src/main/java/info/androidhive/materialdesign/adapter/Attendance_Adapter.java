@@ -33,7 +33,7 @@ public class Attendance_Adapter extends RecyclerView.Adapter<Attendance_Adapter.
     @Override
     public void onBindViewHolder(Attendance_Adapter.ViewHolder viewHolder, int i) {
 
-            viewHolder.emp_id.setText(attendence.get(i).getEmployeeId());
+//            viewHolder.emp_id.setText(attendence.get(i).getEmployeeId());
             viewHolder.checkin_date.setText(attendence.get(i).getCheck_in());
             viewHolder.checkout_date.setText(attendence.get(i).getCheck_out());
             viewHolder.checkin_time.setText(attendence.get(i).getCheck_in_time());
@@ -59,8 +59,7 @@ public class Attendance_Adapter extends RecyclerView.Adapter<Attendance_Adapter.
             super(view);
 
             total_hour=(TextView)view.findViewById(R.id.total_hour);
-            emp_id = (TextView)view.findViewById(R.id.emp_id);
-            checkin_time = (TextView)view.findViewById(R.id.checkin_time);
+             checkin_time = (TextView)view.findViewById(R.id.checkin_time);
             checkout_time = (TextView)view.findViewById(R.id.checkout_time);
             checkin_date = (TextView)view.findViewById(R.id.checkin_date);
             checkout_date = (TextView)view.findViewById(R.id.checkout_date);
