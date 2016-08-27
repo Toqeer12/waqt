@@ -2,6 +2,8 @@ package connection;
 
 import android.app.Application;
 
+import Localization.Localehelper;
+
 /**
  * Created by Ravi Tamada on 15/06/16.
  * www.androidhive.info
@@ -13,7 +15,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Localehelper.onCreate(this, "en");
         mInstance = this;
     }
 

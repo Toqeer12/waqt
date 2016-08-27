@@ -1,5 +1,6 @@
 package info.androidhive.materialdesign.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 import DBHandle.DatabaseHandler;
 import info.androidhive.materialdesign.R;
 
@@ -34,14 +39,17 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public static final String pass = "emailKey";
     public static final String emi = "nameKey";
     SharedPreferences sharedpreferences;
+    SharedPreferences prefs ;
     public static String emii,password,comp_id;
-
+    SharedPreferences.Editor editor;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
      public static String profile ,comp_logo,EmployeeId;
     public static String name;
     TextView txt;
     ImageView img;
+    String langPref = "Language";
+    private Locale myLocale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
+        prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         //checkConnection();
         password = sharedpreferences.getString(pass, null);
         emii = sharedpreferences.getString(emi, null);
@@ -131,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         // display the first navigation drawer view on app launch
         displayView(0);
+        loadLocale();
     }
 
     @Override
@@ -180,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
 
     public void Snack_Bar(String message)
-
     {
         int color;
         color = Color.WHITE;
@@ -195,5 +203,82 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+    public void loadLocale()
+    {
+
+
+        String language = prefs.getString(langPref, "");
+        changeLang(language);
+    }
+    public void saveLocale(String lang)
+    {
+
+
+        editor = prefs.edit();
+        editor.putString(langPref, lang);
+        editor.commit();
+    }
+    public void changeLang(String lang)
+    {
+        if (lang.equalsIgnoreCase(""))
+            return;
+        myLocale = new Locale(lang);
+        saveLocale(lang);
+        Locale.setDefault(myLocale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        updateTexts();
+    }
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (myLocale != null){
+            newConfig.locale = myLocale;
+            Locale.setDefault(myLocale);
+            getBaseContext().getResources().updateConfiguration(newConfig, getBaseContext().getResources().getDisplayMetrics());
+        }
+    }
+
+    private void updateTexts()
+    {
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        String lang = prefs.getString(langPref, "");
+        switch (id) {
+            case R.id.about:
+                if(item.getTitle().toString().equalsIgnoreCase("Arabic")) {
+                    lang = "ar";
+
+                    item.setTitle("English");
+                }
+                else if(item.getTitle().toString().equalsIgnoreCase("English"))
+                {
+                    lang = "";
+
+                    item.setTitle("Arabic");
+                }
+                changeLang(lang);
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

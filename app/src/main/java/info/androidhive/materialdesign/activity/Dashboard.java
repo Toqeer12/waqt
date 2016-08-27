@@ -295,17 +295,15 @@ public void Check_In(String check_in) throws IOException {
                 minor_conv = String.valueOf(minor);
 
                 if (ConnectivityReceiver.isConnected())
-
                 {
-
                     mBluetoothAdapter.stopLeScan(leScanCallback);
                     ibeaconId = uuid + "" + major_conv + "" + minor_conv;
-
                     currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                     Log.d("Response Data2", currentDateTimeString);
                     Post_Check_in_out(ibeaconId, currentDateTimeString);
                     Log.d("Response", "UUID" + uuid + "Major" + major + "Minor" + minor);
-                } else {
+                }
+                else {
                     ibeaconId = uuid + "" + major_conv + "" + minor_conv;
                     mBluetoothAdapter.stopLeScan(leScanCallback);
                     Log.d("Response", "UUID" + uuid + "Major" + major + "Minor" + minor);
@@ -383,14 +381,19 @@ public void Check_In(String check_in) throws IOException {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Log.d("Response", response);
-                        Snack_Bar("Checked Successfully");
-                        if(response.equalsIgnoreCase("1"))
+                        Log.d("Responseout", response);
+
+                        if(response.equalsIgnoreCase("0"))
                         {
-                            mediaPlayer.start();
+                            Log.d("Response", "Check In Failed");
                         }
                         else
                         {
+                            Snack_Bar("Checked Successfully");
+                            mediaPlayer.start();
+                            checkout.setEnabled(true);
+                            checkin.setEnabled(false);
+
 
                         }
 
@@ -483,12 +486,21 @@ public void Check_In(String check_in) throws IOException {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Log.d("Response", response);
+                        Log.d("Responseout", response);
                         //Toast.makeText(getActivity(), response,Toast.LENGTH_LONG).show();
 //                        editor.putString("jsonArray",response);
                         //                      editor.commit();
-                        Snack_Bar("Checked Successfully");
-                        mediaPlayer.start();
+                        if(response.equals("1"))
+                        {
+                            Snack_Bar("Checked Successfully");
+                            mediaPlayer.start();
+                            checkout.setEnabled(true);
+                            checkin.setEnabled(false);
+                        }
+                        else
+                        {
+                            Log.d("Response", "Check In Failed");
+                        }
 
 
                     }

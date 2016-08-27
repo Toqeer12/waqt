@@ -14,17 +14,19 @@
     <string name="currentdate">Date</string>
     <string name="to_date">To Date</string>
     <string name="comment">Reason</string>
+    <string name="leave_history">Leave History</string>
+
     <!-- navigation drawer item labels  -->
 
     <string name="check_out">Check Out</string>
     <string name="check_in">Check In</string>
-
+    <string name="hour">Work hr</string>
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
         <item>@string/nav_item_notifications</item>
         <item>@string/nav_item_attendence</item>
-        <item>@string/nav_item_leavelist</item>
+
     </string-array>
     <integer-array name="nav_drawer_image">
         <item>@drawable/waqt_dash</item>

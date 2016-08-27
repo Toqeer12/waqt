@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="25dp"
-        android:text="Leave History"
+        android:text="@string/leave_history"
         android:textStyle="bold"/>
 
     <android.support.v7.widget.RecyclerView
