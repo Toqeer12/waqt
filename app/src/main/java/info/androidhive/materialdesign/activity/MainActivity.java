@@ -1,7 +1,10 @@
 package info.androidhive.materialdesign.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,12 +14,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +49,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     SharedPreferences.Editor editor;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-     public static String profile ,comp_logo,EmployeeId;
+    public static String profile ,comp_logo,EmployeeId;
     public static String name;
     TextView txt;
+    ProgressDialog progressDialog;
     ImageView img;
     String langPref = "Language";
     private Locale myLocale;
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         img=(ImageView)findViewById(R.id.image);
         txt=(TextView)findViewById(R.id.text);
         DatabaseHandler db = new DatabaseHandler(this);
+        progressDialog = new ProgressDialog(MainActivity.this);
 
         /**
          * CRUD Operations
@@ -125,21 +132,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 }
 
 
-            Toast.makeText(getApplicationContext(),"Emi"+emii+"Password"+password,Toast.LENGTH_LONG).show();
+        //    Toast.makeText(getApplicationContext(),"Emi"+emii+"Password"+password,Toast.LENGTH_LONG).show();
         }
-
-
-
-
-
-
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
-
         drawerFragment.setDrawerListener(this);
-
         // display the first navigation drawer view on app launch
-        displayView(0);
-        loadLocale();
+       displayView(0);
     }
 
     @Override
@@ -148,6 +146,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     private void displayView(int position) {
+        String backStateName = null;
+        backStateName=MainActivity.class.getName();
         Fragment fragment = null;
         String title = getString(R.string.app_name);
         switch (position) {
@@ -171,6 +171,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new MyLeaveList();
                 title=getString(R.string.title_leavelist);
                 break;
+            case 5:
+                finish();
+                break;
             default:
                 break;
         }
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
+
             fragmentTransaction.commit();
 
             // set the toolbar title
@@ -202,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
     public void loadLocale()
     {
@@ -243,7 +247,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private void updateTexts()
     {
-
+                recreate();
+//        Intent i=new Intent(MainActivity.this,MainActivity.class);
+//        startActivity(i);
+//        finish();
 
     }
 
@@ -261,24 +268,117 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        String lang = prefs.getString(langPref, "");
+
+
+
         switch (id) {
             case R.id.about:
-                if(item.getTitle().toString().equalsIgnoreCase("Arabic")) {
-                    lang = "ar";
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Loading....");
+                final Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.custom_dialoug);
+                dialog.setTitle("Select Language");
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.holo_red_light);
 
-                    item.setTitle("English");
-                }
-                else if(item.getTitle().toString().equalsIgnoreCase("English"))
-                {
-                    lang = "";
+                // set the custom dialog components - text, image and button
 
-                    item.setTitle("Arabic");
-                }
-                changeLang(lang);
+
+                Button english = (Button) dialog.findViewById(R.id.english);
+                Button arab = (Button) dialog.findViewById(R.id.arabic);
+                // if button is clicked, close the custom dialog
+                english.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+//                        String lang;
+//                        lang = "en";
+                        Log.d("Response","Arabic Click");
+//                        item.setTitle(prefs.getString("langsave", ""));
+//                        editor = prefs.edit();
+//                        editor.putString("langsave", "English");
+//                        editor.commit();
+                        progressDialog.show();
+                        new android.os.Handler().postDelayed(
+                                new Runnable() {
+                                    public void run() {
+                                        String lang;
+                                        // On complete call either onLoginSuccess or onLoginFailed
+                                        //  registerUser(password, macAddress);
+                                        //  onLoginSuccess();
+                                        // onLoginFailed();
+                                        lang = "en";
+                                        changeLang(lang);
+                                        loadLocale();
+
+                                        progressDialog.dismiss();
+                                        dialog.dismiss();
+
+                                    }
+                                }, 1000);
+                    }
+                });
+                arab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        Log.d("Response","Arabic Click");
+//                        item.setTitle(prefs.getString("langsave", ""));
+//                        editor = prefs.edit();
+//                        editor.putString("langsave", "English");
+         //               editor.commit();
+
+                        progressDialog.show();
+                        new android.os.Handler().postDelayed(
+                                new Runnable() {
+                                    public void run() {
+                                        String lang;
+                                        // On complete call either onLoginSuccess or onLoginFailed
+                                        //  registerUser(password, macAddress);
+                                        //  onLoginSuccess();
+                                        // onLoginFailed();
+                                        lang = "ar";
+                                        changeLang(lang);
+                                        loadLocale();
+
+                                        progressDialog.dismiss();
+                                        dialog.dismiss();
+
+                                    }
+                                }, 3000);
+                    }
+                });
+
+                dialog.show();
+//                if(item.getTitle().toString().equalsIgnoreCase("Arabic")) {
+//                    lang = "ar";
+//                    Log.d("Response","Arabic Click");
+//                    item.setTitle(prefs.getString("langsave", ""));
+//                    editor = prefs.edit();
+//                    editor.putString("langsave", "English");
+//                    editor.commit();
+//                    loadLocale();
+//
+//
+//                }
+//                else if(item.getTitle().toString().equalsIgnoreCase("English"))
+//                {
+//                    lang = "en";
+//                    Log.d("Response","English Click");
+//                    item.setTitle(prefs.getString("langsave", ""));
+//                    editor = prefs.edit();
+//                    editor.putString("langsave", "Arabic");
+//                    editor.commit();
+//                    loadLocale();
+//                }
+
                 break;
 
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

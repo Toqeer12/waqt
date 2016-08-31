@@ -45,7 +45,7 @@
             android:layout_marginTop="10dp"
             android:maxLines="1"
             android:textStyle="bold"
-            android:hint="Total Balance" />
+              />
 
         <EditText
             android:id="@+id/leavelimit"
@@ -55,7 +55,7 @@
             android:layout_marginTop="10dp"
             android:maxLines="1"
             android:textStyle="bold"
-            android:hint="Apply Limit" />
+              />
 
         <EditText
             android:id="@+id/unit"
@@ -66,7 +66,7 @@
             android:maxLines="1"
             android:textStyle="bold"
 
-            android:hint="Apply Limit" />
+             />
         <EditText
             android:id="@+id/editdate"
             android:layout_width="match_parent"
@@ -107,7 +107,7 @@
             android:id="@+id/paidleave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paid Leave"
+            android:text="@string/paidLeve"
             android:checked="false"
              android:layout_alignLeft="@+id/checkBox1"
             android:layout_alignStart="@+id/checkBox1" />

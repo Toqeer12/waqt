@@ -330,7 +330,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, Ada
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Response",error.toString());
-                        Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override

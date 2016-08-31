@@ -229,6 +229,7 @@ public class LoginActivity extends AppCompatActivity {
                                             JSONObject person = (JSONObject) jsoArray
                                                     .get(i);
                                             String name = person.getString("ResponseStatusCode");
+
                                             if(name.equalsIgnoreCase("0"))
                                             {
                                                 Log.d("Response", response.toString());
@@ -268,7 +269,6 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String,String> params = new HashMap<String, String>();
                 params.put(KEY_MACADDRESS,macAddress);
                 params.put(KEY_PASSWORD,password);
-                params.put("Content-Type", "application/json; charset=utf-8");
                 Log.d("Response",params.toString());
                 return params;
             }

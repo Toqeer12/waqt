@@ -66,10 +66,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Nick Name"
+                    android:text="@string/nick_name"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -101,10 +101,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Date of Birth"
+                    android:text="@string/dob"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -137,10 +137,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Email"
+                    android:text="@string/email"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -172,10 +172,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Country"
+                    android:text="@string/country"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -208,10 +208,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Designation"
+                    android:text="@string/desig"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -244,10 +244,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Department"
+                    android:text="@string/dept"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -280,10 +280,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Comp Name"
+                    android:text="@string/com_nmae"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -316,10 +316,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Gender"
+                    android:text="@string/gender"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -352,10 +352,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="High Quali"
+                    android:text="@string/hq"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -389,10 +389,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Marital Status"
+                    android:text="@string/ms"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -425,10 +425,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="DL Number"
+                    android:text="@string/dlnum"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -461,10 +461,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="DL Expiry"
+                    android:text="@string/dlnum"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -498,10 +498,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Emp Code"
+                    android:text="@string/empcode"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -533,10 +533,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Other Detail"
+                    android:text="@string/od"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -568,10 +568,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="SSN"
+                    android:text="@string/ssn"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -603,10 +603,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="SIN"
+                    android:text="@string/sin"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -638,10 +638,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Level"
+                    android:text="@string/level"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -673,10 +673,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Mil Service"
+                    android:text="@string/mil"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -708,10 +708,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Join Date"
+                    android:text="@string/jd"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -744,10 +744,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Emp type"
+                    android:text="@string/emptype"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -756,7 +756,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/emptyp"
                     android:layout_weight="1"
                     android:textStyle="bold"/>
@@ -783,7 +782,7 @@
                     android:layout_weight="1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Grade"
+                    android:text="@string/grade"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -792,7 +791,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/grde"
                     android:layout_weight="1"
                     android:textStyle="bold"/>
@@ -816,10 +814,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Shfit"
+                    android:text="@string/shfit"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -828,7 +826,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/shfit"
                     android:layout_weight="1"
                     android:textStyle="bold"/>
@@ -852,10 +849,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Work Hour"
+                    android:text="@string/wh"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -864,7 +861,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/whour"
                     android:layout_weight="1"
                     android:textStyle="bold"/>
@@ -888,10 +884,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Shift Start"
+                    android:text="@string/ss"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -900,7 +896,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/sfstart"
                     android:layout_weight="1"
                     android:textStyle="bold"/>
@@ -924,7 +919,7 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
                     android:text="Shift End"
@@ -936,7 +931,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/sfend"
                     android:layout_weight="1"
                     android:textStyle="bold"/>
@@ -961,10 +955,10 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="9dp"
-                    android:text="Grade Val"
+                    android:text="@string/gv"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_alignParentTop="true"
@@ -973,7 +967,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#000000"
-                    android:text="Leave History"
                     android:id="@+id/grdval"
                     android:layout_weight="1"
                     android:textStyle="bold"/>

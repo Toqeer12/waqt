@@ -243,10 +243,12 @@ public void OFFLINE_ATTENDACE()
                                 outputFormat2 = new SimpleDateFormat("KK:mm a");
 
 
-                                    Log.d("ResponseAdapter", checkin_output[0]);
+//                                    Log.d("ResponseAdapter", checkin_output[1]);
+//                                    Log.d("ResponseAdapter", checkout_output[1]);
                                     try {
+
+                                        timein_convt = outputFormat2.format(inputFormat2.parse(checkin_output[1].substring(0, 8)));
                                         timeout_convt = outputFormat2.format(inputFormat2.parse(checkout_output[1].substring(0, 8)));
-                                        timein_convt = outputFormat2.format(inputFormat2.parse(checkout_output[1].substring(0, 8)));
                                         tot_hour_convt = outputFormat2.format(inputFormat2.parse(total_work_hour.substring(0, 7)));
                                     //    tot_hour_convt = outputFormat2.format(inputFormat2.parse(total_work_hour.substring(0, 7)));
                                         Log.d("ResponseAdapter2", checkin_output[0]);
@@ -257,7 +259,7 @@ public void OFFLINE_ATTENDACE()
                                     } catch (Exception ex) {
 
                                     }
-                                    attendence.add(new Attendence_history(checkin_output[0], checkout_output[0], timeout_convt, timein_convt, tot_hour_convt, EmployeeId));
+                                    attendence.add(new Attendence_history(checkin_output[0], checkout_output[0], timein_convt, timeout_convt, tot_hour_convt, EmployeeId));
                                     adapter = new Attendance_Adapter(getActivity(), attendence);
                                     recyclerView.setAdapter(adapter);
 

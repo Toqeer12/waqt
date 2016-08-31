@@ -7,6 +7,8 @@
     <string name="attendance_history">Attendence History</string>
     <string name="nav_item_home">Dashboard</string>
     <string name="nav_item_friends">Profile</string>
+
+    <string name="nav_item_exit">Exit</string>
     <string name="nav_item_notifications">Apply Leave</string>
     <string name="nav_item_attendence">My Attendence</string>
     <string name="nav_item_leavelist">My Leave List</string>
@@ -15,6 +17,36 @@
     <string name="to_date">To Date</string>
     <string name="comment">Reason</string>
     <string name="leave_history">Leave History</string>
+
+
+    <string name="nick_name">Nick Name</string>
+    <string name="dob">Date of Birth</string>
+    <string name="email">Email</string>
+    <string name="country">Country</string>
+    <string name="desig">Designation</string>
+    <string name="com_nmae">Comp Name</string>
+    <string name="gender">Gender</string>
+    <string name="hq">Higer Qfn</string>
+    <string name="ms">Marital Status</string>
+    <string name="dlnum">DL Number</string>
+    <string name="dlexp">DL Expiry</string>
+    <string name="empcode">Emp Code</string>
+    <string name="od">Other Detail</string>
+    <string name="ssn">SSN</string>
+    <string name="sin">SIN</string>
+    <string name="mil">M Service</string>
+    <string name="level">Level</string>
+    <string name="grade">Grade</string>
+    <string name="shfit">Shift</string>
+    <string name="wh">Work Hour</string>
+    <string name="dept">Department</string>
+    <string name="ss">Shift Start</string>
+    <string name="se">Shift End</string>
+    <string name="gv">Grade Value</string>
+    <string name="emptype">Emp Type</string>
+    <string name="jd">Join Date</string>
+    <string name="language">Language</string>
+    <string name="paidLeve">Paid Leave</string>
 
     <!-- navigation drawer item labels  -->
 
@@ -25,8 +57,9 @@
         <item>@string/nav_item_home</item>
         <item>@string/nav_item_friends</item>
         <item>@string/nav_item_notifications</item>
-        <item>@string/nav_item_attendence</item>
-
+        <item>@string/nav_item_attendence</item>.
+        <item>@string/nav_item_leavelist</item>
+        <item>@string/nav_item_exit</item>
     </string-array>
     <integer-array name="nav_drawer_image">
         <item>@drawable/waqt_dash</item>
@@ -34,7 +67,7 @@
         <item>@drawable/waqt_applyleav</item>
         <item>@drawable/waqt_attendence</item>
         <item>@drawable/waqt_myleavelist </item>
-
+        <item>@drawable/waqt_exit </item>
     </integer-array>
     <string name="title_leave">Leave</string>
     <string name="title_profile">Profile</string>

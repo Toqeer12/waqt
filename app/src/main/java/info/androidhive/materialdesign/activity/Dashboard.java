@@ -106,8 +106,26 @@ public class Dashboard extends Fragment {
         checkout=(Button)rootView.findViewById(R.id.checkout);
         attendance=(Button) rootView.findViewById(R.id.myattendance);
         leave=(Button)rootView.findViewById(R.id.myleave);
+        editor = sharedpreferences.edit();
+        String shared_value=sharedpreferences.getString("attendance","");
+        if(shared_value.equalsIgnoreCase("Checked In"))
+        {
+            checkout.setEnabled(true);
+            checkin.setEnabled(false);
+        }
+        else if(shared_value.equalsIgnoreCase("Checked Out"))
+        {
+            checkin.setEnabled(true);
+            checkout.setEnabled(false);
+        }
+        else
+        {
+            // do somethings.....
+            editor.remove("attendance");
+            editor.commit();
+            checkout.setEnabled(true);
+        }
 
-        checkout.setEnabled(false);
         if(gps.canGetLocation()){
 
               latitude = gps.getLatitude();
@@ -383,19 +401,53 @@ public void Check_In(String check_in) throws IOException {
                         // response
                         Log.d("Responseout", response);
 
-                        if(response.equalsIgnoreCase("0"))
-                        {
-                            Log.d("Response", "Check In Failed");
-                        }
-                        else
-                        {
-                            Snack_Bar("Checked Successfully");
-                            mediaPlayer.start();
-                            checkout.setEnabled(true);
-                            checkin.setEnabled(false);
+
+                        try {
+                            Log.d("Response", response.toString());
 
 
+                            JSONArray jsoArray = new JSONArray(response);
+                            for (int i = 0; i < jsoArray.length(); i++) {
+                                JSONObject person = (JSONObject) jsoArray
+                                        .get(i);
+                                String name = person.getString("ResponseStatusCode");
+                                String message = person.getString("ResponseMessage");
+
+
+                                if(message.equalsIgnoreCase("Checkedin"))
+                                {
+                                    Log.d("Response", response.toString());
+                                    Snack_Bar("Checked In Successfully");
+                                    mediaPlayer.start();
+                                    checkout.setEnabled(true);
+                                    checkin.setEnabled(false);
+
+                                    editor.putString("attendance", "Checked In");
+                                    editor.commit();
+
+                                }
+                                else if(message.equalsIgnoreCase("Checkedout"))
+                                {
+
+
+                                    Log.d("Response", response.toString());
+                                    Snack_Bar("Checked Out Successfully");
+                                    mediaPlayer.start();
+                                    checkout.setEnabled(false);
+                                    checkin.setEnabled(true);
+                                    editor.remove("attendance");
+                                    editor.putString("attendance", "Checked Out");
+                                    editor.commit();
+                                }
+                                else
+                                {
+                                    Snack_Bar("Wrong Password");
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+
 
 
 
@@ -490,17 +542,49 @@ public void Check_In(String check_in) throws IOException {
                         //Toast.makeText(getActivity(), response,Toast.LENGTH_LONG).show();
 //                        editor.putString("jsonArray",response);
                         //                      editor.commit();
-                        if(response.equals("1"))
-                        {
-                            Snack_Bar("Checked Successfully");
-                            mediaPlayer.start();
-                            checkout.setEnabled(true);
-                            checkin.setEnabled(false);
+                        try {
+                            Log.d("Response", response.toString());
+
+
+                            JSONArray jsoArray = new JSONArray(response);
+                            for (int i = 0; i < jsoArray.length(); i++) {
+                                JSONObject person = (JSONObject) jsoArray
+                                        .get(i);
+                                String name = person.getString("ResponseStatusCode");
+                                String message = person.getString("ResponseMessage");
+
+
+                                if(message.equalsIgnoreCase("Checkedin"))
+                                {
+                                    Log.d("Response", response.toString());
+                                    Snack_Bar("Checked In Successfully");
+                                    mediaPlayer.start();
+                                    checkout.setEnabled(true);
+                                    checkin.setEnabled(false);
+                                    editor.remove("attendance");
+                                    editor.putString("attendance", "Checked In");
+                                    editor.commit();
+                                }
+                                else if(message.equalsIgnoreCase("Checkedout"))
+                                {
+                                    Log.d("Response", response.toString());
+                                    Snack_Bar("Checked Out Successfully");
+                                    mediaPlayer.start();
+                                    checkout.setEnabled(false);
+                                    checkin.setEnabled(true);
+                                    editor.remove("attendance");
+                                    editor.putString("attendance", "Checked Out");
+                                    editor.commit();
+                                }
+                                else
+                                {
+                                    Snack_Bar("Wrong Password");
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        else
-                        {
-                            Log.d("Response", "Check In Failed");
-                        }
+
 
 
                     }

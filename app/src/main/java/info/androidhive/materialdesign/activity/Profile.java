@@ -3,9 +3,12 @@ package info.androidhive.materialdesign.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +39,7 @@ public class Profile extends Fragment {
     public Profile() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +90,8 @@ public class Profile extends Fragment {
 
     return rootView;
     }
+
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -207,4 +213,6 @@ public void InitalField()
     gdval=(TextView)rootView.findViewById(R.id.grdval);
 
 }
+
+
 }
